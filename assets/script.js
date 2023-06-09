@@ -23,12 +23,38 @@ fetch(url).then(function (result) {
                 var title = result.title;
                 var url = result.url;
 
-                var newLink = document.createElement("a");
-                newLink.textContent = title;
-                newLink.setAttribute("href", url);
+                var unsortedItems = document.createElement("a");
+                unsortedItems.textContent = title;
+                unsortedItems.setAttribute("href", url);
+                unsortedItems.setAttribute("id", "unsorted")
 
-                resultsContainer.appendChild(newLink);
+                resultsContainer.appendChild(unsortedItems);
             }
         });
     }
 });
+
+// result item id needs to be added by user input
+// need to select result items by id
+// elements need to be sorted by id
+
+var userRating = document.createElement("input");
+userRating.setAttribute("id", "user_rating");
+var userInput = document.getElementById("user_rating").value; // figure out how to restrict user rating to numbers between 1 and 10
+
+unsortedItems.appendChild(userRating);
+
+// place unsorted items in an object and use json to retrieve document.write(obj.key[1].)
+
+var itemsToBeSorted = {
+    title: url,
+    title2: url,
+    title3: url,
+}
+
+function sortResults() {
+    // take id values and add to array then use .sort?
+    document.write(obj.names[i])
+    
+}
+
