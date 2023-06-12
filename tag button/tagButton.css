@@ -21,6 +21,9 @@
     background-color: #ccc;
 }
 
+.clickedTagButton{
+    background-color: #000000;
+}
 
 /* TODO:
     1. Add hover effect
