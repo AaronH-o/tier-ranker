@@ -1,7 +1,7 @@
-var resultsContainer = document.createElement("section");
-resultsContainer.setAttribute("id", "results_container")
-var resultsList = document.createElement("ol");
-resultsList.setAttribute("id", "results_list");
+// variables selecting html list elements
+var resultsContainer = document.getElementById("results_container"); 
+var resultsList = document.getElementById("results_list");
+var rankedList = document.getElementById("ranked_list");
 
 resultsContainer.appendChild(resultsList);
 
@@ -9,7 +9,8 @@ resultsContainer.appendChild(resultsList);
 // added placeholder fetch()
 // select the elements on the resultsList 
 
-fetch(url).then(function (result) {
+// placeholder fetch()
+/*fetch(url).then(function (result) {
     if (result.ok) {
         result.json().then(function(data) {
             resultsContainer.innerHTML = ""; // clearing results holder element before data is changed by query
@@ -32,29 +33,75 @@ fetch(url).then(function (result) {
             }
         });
     }
-});
+}); */
 
-// result item id needs to be added by user input
-// need to select result items by id
-// elements need to be sorted by id
 
-var userRating = document.createElement("input");
-userRating.setAttribute("id", "user_rating");
-var userInput = document.getElementById("user_rating").value; // figure out how to restrict user rating to numbers between 1 and 10
+// look into using jQuery sortable list that can allow user to drag items and sort
+// issue: appending html element to sortable table row/li causes it not to be sortable
+$( function() {
+  $( "#results_list, #ranked_list" ).sortable({ 
+    connectWith: "#ranked_list"
+  });
+} );
 
-unsortedItems.appendChild(userRating);
-
-// place unsorted items in an object and use json to retrieve document.write(obj.key[1].)
-
-var itemsToBeSorted = {
-    title: url,
-    title2: url,
-    title3: url,
-}
-
-function sortResults() {
-    // take id values and add to array then use .sort?
-    document.write(obj.names[i])
+// added jQuery sliders to each list item for user input
+$( function() {
+    $( "#slider-range-max1" ).slider({
+      range: "max",
+      min: 1,
+      max: 10,
+      value: 2,
+      slide: function( event, ui ) {
+        $( "#rating1" ).val( ui.value );
+      }
+    });
+    $( "#rating1" ).val( $( "#slider-range-max1" ).slider( "value" ) );
     
-}
+    $( "#slider-range-max2" ).slider({
+        range: "max",
+        min: 1,
+        max: 10,
+        value: 2,
+        slide: function( event, ui ) {
+          $( "#rating2" ).val( ui.value );
+        }
+      });
+      $( "#rating2" ).val( $( "#slider-range-max2" ).slider( "value" ) );
 
+      $( "#slider-range-max3" ).slider({
+        range: "max",
+        min: 1,
+        max: 10,
+        value: 2,
+        slide: function( event, ui ) {
+          $( "#rating3" ).val( ui.value );
+        }
+      });
+      $( "#rating3" ).val( $( "#slider-range-max3" ).slider( "value" ) );
+
+      $( "#slider-range-max4" ).slider({
+        range: "max",
+        min: 1,
+        max: 10,
+        value: 2,
+        slide: function( event, ui ) {
+          $( "#rating4" ).val( ui.value );
+        }
+      });
+      $( "#rating4" ).val( $( "#slider-range-max4" ).slider( "value" ) );
+
+      $( "#slider-range-max5" ).slider({
+        range: "max",
+        min: 1,
+        max: 10,
+        value: 2,
+        slide: function( event, ui ) {
+          $( "#rating5" ).val( ui.value );
+        }
+      });
+      $( "#rating5" ).val( $( "#slider-range-max5" ).slider( "value" ) );
+
+  } );
+
+
+// one option: place unsorted items in an object and use json to retrieve document.write(obj.key[1].)

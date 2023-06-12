@@ -2,9 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tier Ranker</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="assets/style.css">
+    <style>
+        #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+        #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+        #sortable li span { position: absolute; margin-left: -1.3em; }
+      </style>
+    <title>Tier Ranker</title>
 </head>
 <body>
-
+    <main>
+        <!--results_container will contain list of results pulled from API call that can be added to second ranked list-->
+        <section id="results_container">
+            <ul id="results_list">
+                <h3>Your Results:</h3>
+                <li>unsorted</li>
+            </ul>
+            <ol id="ranked_list">
+                <!--this ol contains html elements for ui sliders, need to figure out how to resize. also contains placeholder li that will eventually be replaced with API data-->
+                <h3>Your Ranking:</h3>
+                <li>#1 Spot
+                    <p>
+                        <label for="rating1">Rating:</label>
+                        <input type="text" id="rating1" readonly style="border:0; color:#f6931f; font-weight:bold;"> 
+                    </p>
+                    <div id="slider-range-max1"></div>
+                </li>
+                <li>#2 Spot
+                    <p>
+                        <label for="rating2">Rating:</label>
+                        <input type="text" id="rating2" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
+                    </p>
+                    <div id="slider-range-max2"></div>
+                </li>
+                <li>#3 Spot
+                    <p>
+                        <label for="rating3">Rating:</label>
+                        <input type="text" id="rating3" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
+                    </p>
+                    <div id="slider-range-max3"></div>
+                </li>
+                <li>#4 Spot
+                    <p>
+                        <label for="rating4">Rating:</label>
+                        <input type="text" id="rating4" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
+                    </p>
+                    <div id="slider-range-max4"></div>
+                </li>
+                <li>#5 Spot
+                    <p>
+                        <label for="rating5">Rating:</label>
+                        <input type="text" id="rating5" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
+                    </p>
+                    <div id="slider-range-max5"></div>
+                </li>
+            </ol>
+        </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./assets/script.js"></script>
 </body>
