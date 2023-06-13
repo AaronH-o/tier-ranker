@@ -44,7 +44,8 @@ $( function() {
   });
 } );
 
-// added jQuery sliders to each list item for user input
+// added jQuery sliders to each list item for user input 
+
 $( function() {
     $( "#slider-range-max1" ).slider({
       range: "max",
