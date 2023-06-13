@@ -37,17 +37,17 @@ listAddButton.addEventListener('click', function listAddButton()
     var listItemName = document.querySelector("#listInput").value;
 
     var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
-     for(i = 0; i < list.length; i++){
-       if(list[i].name == this.id){
-         return; //if the item is already in the list, do nothing
-       }
-     }
+    for(i = 0; i < list.length; i++)
+    {
+      if(list[i].name == listItemName || listItemName == "")
+      {
+        return; //if the item is already in the list, or the input is empty do nothing
+      }
+    }
 
-     if(listItemName == ""){} //if the item name is blank, do nothing
-     else{
-      list.push({name: listItemName, tags: []}); //adds the item to the list
-      localStorage.setItem("itemList", JSON.stringify(list)); //saves the list to local storage
-     }
-     console.log(list);
+    
+    list.push({name: listItemName, tags: []}); //adds the item to the list
+    localStorage.setItem("itemList", JSON.stringify(list)); //saves the list to local storage
+    console.log(list);
 
   });
