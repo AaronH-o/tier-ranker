@@ -1,8 +1,13 @@
-localStorage.setItem("tagCount", 0); //sets the tagCount to 0 when the page is loaded
-localStorage.setItem("itemList", JSON.stringify([])); //sets the itemList to an empty array when the page is loaded
-localStorage.setItem("tagList", JSON.stringify([])); //sets the tagList to an empty array when the page is loaded
 
+if(localStorage.getItem("itemList") == null) //if the itemCount is null, set it to an empty array
+{
+  localStorage.setItem("itemList", JSON.stringify([])); //sets the itemList to an empty array when the page is loaded
+}
 
+if(localStorage.getItem("tagList") == null) //if the itemCount is null, set it to 0
+{
+  localStorage.setItem("tagList", JSON.stringify([])); //sets the tagList to an empty array when the page is loaded
+}
 
 
 
@@ -24,23 +29,25 @@ tagButtons.forEach(function(currentBtn)  //adds an event listener to each tagBut
 
 
 
-var listAddButton = document.querySelectorAll(".addListButton");
-if(listAddButton.length > 0)
-{  //if there are any addListButtons on the page, add an event listener to each one
-  listAddButton.forEach(function(currentBtn)
-  {  //adds an event listener to each addListButton that adds the item to the list when clicked
-    console.log(currentBtn);
-    currentBtn.addEventListener('click', function listAddButton()
-    {
-      var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
-      for(i = 0; i < list.length; i++){
-        if(list[i].name == this.id){
-          return; //if the item is already in the list, do nothing
-        }
-      }
-      list.push({name: this.id, tags: []}); //adds the item to the list
-      console.log(list);
+var listAddButton = document.querySelector("#addListButton");
+console.log(listAddButton);
+listAddButton.addEventListener('click', function listAddButton()
+  {
+    console.log("event listener added");
+    var listItemName = document.querySelector("#listInput").value;
 
-    });
+    var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
+     for(i = 0; i < list.length; i++){
+       if(list[i].name == this.id){
+         return; //if the item is already in the list, do nothing
+       }
+     }
+
+     if(listItemName == ""){} //if the item name is blank, do nothing
+     else{
+      list.push({name: listItemName, tags: []}); //adds the item to the list
+      localStorage.setItem("itemList", JSON.stringify(list)); //saves the list to local storage
+     }
+     console.log(list);
+
   });
-}
