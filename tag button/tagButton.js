@@ -29,9 +29,17 @@ if(listAddButton.length > 0)
 {  //if there are any addListButtons on the page, add an event listener to each one
   listAddButton.forEach(function(currentBtn)
   {  //adds an event listener to each addListButton that adds the item to the list when clicked
+    console.log(currentBtn);
     currentBtn.addEventListener('click', function listAddButton()
     {
-      var list = document.querySelector(".listInput");
+      var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
+      for(i = 0; i < list.length; i++){
+        if(list[i].name == this.id){
+          return; //if the item is already in the list, do nothing
+        }
+      }
+      list.push({name: this.id, tags: []}); //adds the item to the list
+      console.log(list);
 
     });
   });
