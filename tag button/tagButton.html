@@ -14,7 +14,7 @@
         <button class = "tagButton">Tag 3</button>
     </div>
 
-    <div inputContainer> <!-- TODO: add a button that allows you to delete items from list, and tags from items-->
+    <div class = "inputContainer"> <!-- TODO: add a button that allows you to delete items from list, and tags from items-->
         <div> <!-- TODO: when the listInput button is clicked, it adds the list item to the list (both displayed list and stored list) then a new box for user input appears -->
             <input type = "text" id = "listInput" placeholder = "Enter list item name">
             <input type="number" min="1" max="10" value="1">
@@ -27,6 +27,17 @@
 
         <button class = "tagButton" id = "addTagButton">Add Tag</button>
 
+    </div>
+    
+
+    <div class = "listDisplay"> <!-- container where the list will be displayed (TODO: add tiers/rows for the list display so multiple list items can be displayed on the same tier/row)-->
+        <ul id = "list">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+
+        <button class = "removeButton" id = "clearListButton">Clear All List Items</button> <!--Clears all items from the list-->
     </div>
 
 

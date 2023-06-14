@@ -41,7 +41,8 @@ listAddButton.addEventListener('click', function listAddButton()
     {
       if(list[i].name.toLowerCase() == listItemName.toLowerCase() || listItemName == "")
       {
-        return; //if the item is already in the list, or the input is empty do nothing
+        console.log("item already in list or empty");
+        return; //if the item is already in the list (regardless of capitalization), or the input is empty, then do nothing
       }
     }
 
@@ -50,4 +51,11 @@ listAddButton.addEventListener('click', function listAddButton()
     localStorage.setItem("itemList", JSON.stringify(list)); //saves the list to local storage
     console.log(list);
 
+  });
+
+  var clearListButton = document.querySelector("#clearListButton"); //finds the clear list button and ties variable to it
+  clearListButton.addEventListener('click', function clearListFunction() //adds an event listener to the clear list button that clears the list
+  {
+    console.log("clear initiated");
+    localStorage.setItem("itemList", JSON.stringify([])); //sets the itemList to an empty array
   });
