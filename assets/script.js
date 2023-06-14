@@ -22,21 +22,35 @@ function getAPI(requestUrl) {
   if(platformInput === 'myanimelist') {
     fetch(requestUrl, options)
     .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      // TODO: process data, display data, and place in local storage
-      
-    })
-  } else {
-    fetch(requestUrl)
-    .then(function(response) {
+      if(!response.ok) {
+        throw response.json();
+      }
+
       return response.json();
     })
     .then(function(data) {
       // TODO: process data, display data, and place in local storage
 
     })
+    .catch(function(error) {
+      console.error(error);
+    });
+  } else {
+    fetch(requestUrl)
+    .then(function(response) {
+      if(!response.ok) {
+        throw response.json();
+      }
+
+      return response.json();
+    })
+    .then(function(data) {
+      // TODO: process data, display data, and place in local storage
+
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
   }
 }
 
