@@ -7,12 +7,12 @@ const platformInput = document.querySelector('#platform-input').value;
 // marvel API key
 const marvelPublicKey = '7b860beaace6f1d92b8fec268e2dca7b';
 
-// API keys for jikan API (myanimelist)
+// MyAnimeList API key
 const options = {
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Key': 'f1f9bbb657mshacd34051c5a8050p1b9924jsn3b363fae40ac',
-		'X-RapidAPI-Host': 'jikan1.p.rapidapi.com'
+		'X-RapidAPI-Host': 'myanimelist.p.rapidapi.com'
 	}
 };
 
@@ -83,18 +83,15 @@ function generateRequestUrl(event) {
 
   //  searching myanimelist api
   else if(platformInput === 'myanimelist') {
-    queryString += 'https://jikan1.p.rapidapi.com/search/anime?';
+    queryString += 'https://myanimelist.p.rapidapi.com/anime/';
     if(categoryInput === 'Title') {
-      // TODO: figure a way to find anime ID based off of title
       searchInput = searchInput.split(' ').join('%20');
-      queryString += 'q=' + searchInput;
+      queryString += 'search/' + searchInput;
       console.log(queryString);
     } else if(categoryInput === 'ID') {
       queryString += id;
       console.log(queryString);
     }
-
-    
   }
 
   // searching marvel comics api
@@ -110,7 +107,6 @@ function generateRequestUrl(event) {
       console.log(queryString);
     }
   }
-
 
   return queryString;
 }
