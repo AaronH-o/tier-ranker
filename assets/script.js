@@ -3,8 +3,11 @@ var searchInput = document.querySelector('#listInput').value;
 // TODO: adjust #category-input and #platform-input to appropriate values
 const categoryInput = document.querySelector('#category-input').value;
 const platformInput = document.querySelector('#platform-input').value;
+
+// marvel API key
 const marvelPublicKey = '7b860beaace6f1d92b8fec268e2dca7b';
 
+// API keys for jikan API (myanimelist)
 const options = {
 	method: 'GET',
 	headers: {
