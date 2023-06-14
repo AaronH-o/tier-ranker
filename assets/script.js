@@ -1,7 +1,9 @@
-var fetchButton = document.getElementById('fetch-button');
-var searchInput = document.querySelector('#search-input').value;
+var fetchButton = document.getElementById('#addListButton');
+var searchInput = document.querySelector('#listInput').value;
+// TODO: adjust #category-input and #platform-input to appropriate values
 const categoryInput = document.querySelector('#category-input').value;
 const platformInput = document.querySelector('#platform-input').value;
+const marvelPublicKey = '7b860beaace6f1d92b8fec268e2dca7b';
 
 const options = {
 	method: 'GET',
@@ -20,6 +22,7 @@ function getAPI(requestUrl) {
       return response.json();
     })
     .then(function(data) {
+      // TODO: process data, display data, and place in local storage
       
     })
   } else {
@@ -28,7 +31,8 @@ function getAPI(requestUrl) {
       return response.json();
     })
     .then(function(data) {
-      
+      // TODO: process data, display data, and place in local storage
+
     })
   }
 }
@@ -52,7 +56,11 @@ function generateRequestUrl(event) {
     // TODO: add diff search categories based off of categoryInput
     if(categoryInput === 'Title') {
       searchInput = searchInput.split(' ').join('+');
-      queryString += 't='+searchInput;
+      queryString += 't=' + searchInput;
+      console.log(queryString);
+    } else if(categoryInput === 'ID') {
+      queryString += 'i=' + searchInput;
+      console.log(queryString);
     }
   }
 
@@ -66,6 +74,7 @@ function generateRequestUrl(event) {
       console.log(queryString);
     } else if(categoryInput === 'ID') {
       queryString += id;
+      console.log(queryString);
     }
 
     
@@ -78,8 +87,10 @@ function generateRequestUrl(event) {
       // TODO: figure a way to find anime ID based off of title
       // var id = searchInput title to ID 
       // queryString += id;
+      // console.log(queryString);
     } else if(categoryInput === 'ID') {
-      queryString += id;
+      queryString += id + '?apikey=' + marvelPublicKey;
+      console.log(queryString);
     }
   }
 
