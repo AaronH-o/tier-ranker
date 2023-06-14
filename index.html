@@ -5,21 +5,18 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="assets/style.css">
     <style>
-        #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-        #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-        #sortable li span { position: absolute; margin-left: -1.3em; } 
         .ui-slider { width: 25em;} 
-      </style> <!--added inline styling for .ui-slider-->
+    </style> <!--added inline styling for .ui-slider-->
     <title>Tier Ranker</title>
 </head>
 <body>
     <main>
         <!--results_container will contain list of results pulled from API call that can be added to second ranked list-->
         <section id="results_container">
-            <ul id="results_list">
-                <h3>Your Results:</h3>
+            <!--for MVP only need one list of items with results and rating sliders <ul id="results_list">
+                <h3>Your Results:</h3>    
                 <li>unsorted</li>
-            </ul>
+            </ul>-->
             <ol id="ranked_list">
                 <!--this ol contains html elements for ui sliders, need to figure out how to resize. also contains placeholder li that will eventually be replaced with API data-->
                 <h3>Your Ranking:</h3>

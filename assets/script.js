@@ -1,9 +1,9 @@
 // variables selecting html list elements
 var resultsContainer = document.getElementById("results_container"); 
-var resultsList = document.getElementById("results_list");
+var resultsList = document.getElementById("results_list"); // results_list is not being used for now
 var rankedList = document.getElementById("ranked_list");
 
-resultsContainer.appendChild(resultsList);
+resultsContainer.appendChild(rankedList);
 
 // have list items be created as part of fetch()?
 // added placeholder fetch()
@@ -38,11 +38,12 @@ resultsContainer.appendChild(resultsList);
 
 // look into using jQuery sortable list that can allow user to drag items and sort
 // issue: appending html element to sortable table row/li causes it not to be sortable
-$( function() {
+// for MVP will stick with adding rating sliders for each result item, will revist sortable list
+/*$( function() {
   $( "#results_list, #ranked_list" ).sortable({ 
     connectWith: "#ranked_list"
   });
-} );
+} );*/
 
 // added jQuery sliders to each list item for user input 
 
@@ -102,7 +103,7 @@ $( function() {
       });
       $( "#rating5" ).val( $( "#slider-range-max5" ).slider( "value" ) );
 
-  } );
+  });
 
 
 // one option: place unsorted items in an object and use json to retrieve document.write(obj.key[1].)
