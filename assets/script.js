@@ -67,10 +67,8 @@ function generateRequestUrl(event) {
   var queryString = '';
 
   // searching imdb api
-  // TODO: rotten tomatoes api is not available but omdbapi provides rotten tomato score 
   if(platformInput === 'IMDB') {
     queryString += 'http://www.omdbapi.com/?';
-    // TODO: add diff search categories based off of categoryInput
     if(categoryInput === 'Title') {
       searchInput = searchInput.split(' ').join('+');
       queryString += 't=' + searchInput;
@@ -112,3 +110,5 @@ function generateRequestUrl(event) {
 }
 
 fetchButton.addEventListener(click, getAPI(generateRequestUrl));
+
+// TODO: parse data depending on which API was called
