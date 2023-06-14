@@ -1,23 +1,40 @@
 var fetchButton = document.getElementById('fetch-button');
+var searchInput = document.querySelector('#search-input').value;
+const categoryInput = document.querySelector('#category-input').value;
+const platformInput = document.querySelector('#platform-input').value;
 
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'f1f9bbb657mshacd34051c5a8050p1b9924jsn3b363fae40ac',
+		'X-RapidAPI-Host': 'jikan1.p.rapidapi.com'
+	}
+};
 
 function getAPI(requestUrl) {
   if(!requestUrl) return;
-  fetch(requestUrl)
+
+  if(platformInput === 'myanimelist') {
+    fetch(requestUrl, options)
     .then(function(response) {
       return response.json();
     })
     .then(function(data) {
       
     })
+  } else {
+    fetch(requestUrl)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      
+    })
+  }
 }
 
 function generateRequestUrl(event) {
 
-  var searchInput = document.querySelector('#search-input').value;
-  var platformInput = document.querySelector('#platform-input').value;
-  var categoryInput = document.querySelector('#category-input').value;
-  
   if(!searchInput) {
     console.error('No search input');
     return;
@@ -34,20 +51,24 @@ function generateRequestUrl(event) {
     queryString += 'http://www.omdbapi.com/?';
     // TODO: add diff search categories based off of categoryInput
     if(categoryInput === 'Title') {
+      searchInput = searchInput.split(' ').join('+');
       queryString += 't='+searchInput;
     }
   }
 
   //  searching myanimelist api
   else if(platformInput === 'myanimelist') {
-    queryString += 'https://api.myanimelist.net/v2/anime/';
+    queryString += 'https://jikan1.p.rapidapi.com/search/anime?';
     if(categoryInput === 'Title') {
       // TODO: figure a way to find anime ID based off of title
-      // var id = searchInput title to ID 
-      // queryString += id;
+      searchInput = searchInput.split(' ').join('%20');
+      queryString += 'q=' + searchInput;
+      console.log(queryString);
     } else if(categoryInput === 'ID') {
       queryString += id;
     }
+
+    
   }
 
   // searching marvel comics api
