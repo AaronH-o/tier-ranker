@@ -5,40 +5,9 @@ var rankedList = document.getElementById("ranked_list");
 
 resultsContainer.appendChild(rankedList);
 
-// have list items be created as part of fetch()?
-// added placeholder fetch()
-// select the elements on the resultsList 
-
-// placeholder fetch()
-/*fetch(url).then(function (result) {
-    if (result.ok) {
-        result.json().then(function(data) {
-            resultsContainer.innerHTML = ""; // clearing results holder element before data is changed by query
-            console.log(data);
-            if (data.results.length === 0) {
-                resultsContainer.textContent = "no results for " + query;
-            }
-            for (var i=0; i<data.results.length;i++) {
-                var result = data.results[i]; 
-
-                var title = result.title;
-                var url = result.url;
-
-                var unsortedItems = document.createElement("a");
-                unsortedItems.textContent = title;
-                unsortedItems.setAttribute("href", url);
-                unsortedItems.setAttribute("id", "unsorted")
-
-                resultsContainer.appendChild(unsortedItems);
-            }
-        });
-    }
-}); */
-
-
-// look into using jQuery sortable list that can allow user to drag items and sort
 // issue: appending html element to sortable table row/li causes it not to be sortable
 // for MVP will stick with adding rating sliders for each result item, will revist sortable list
+
 /*$( function() {
   $( "#results_list, #ranked_list" ).sortable({ 
     connectWith: "#ranked_list"
@@ -46,7 +15,8 @@ resultsContainer.appendChild(rankedList);
 } );*/
 
 // added jQuery sliders to each list item for user input 
-
+// sliders are wrapped in section tags id=slider_1 to 5, can append to API results
+// slider values can be stored in variables: var min/max = $( ".selector" ).slider( "option", "min"/"max" ); 
 $( function() {
     $( "#slider-range-max1" ).slider({
       range: "max",

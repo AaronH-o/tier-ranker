@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="assets/style.css">
     <style>
-        .ui-slider { width: 25em;} 
+        .ui-slider { width: 25em; 
+    background-color: whitesmoke;} 
     </style> <!--added inline styling for .ui-slider-->
     <title>Tier Ranker</title>
 </head>
@@ -18,42 +19,52 @@
                 <li>unsorted</li>
             </ul>-->
             <ol id="ranked_list">
-                <!--this ol contains html elements for ui sliders, need to figure out how to resize. also contains placeholder li that will eventually be replaced with API data-->
+                <!--this ol contains html elements for ui sliders. API data can be appended to li-->
                 <h3>Your Ranking:</h3>
-                <li>#1 Spot
-                    <p>
-                        <label for="rating1">Rating:</label>
-                        <input type="text" id="rating1" readonly style="border:0; color:#f6931f; font-weight:bold;"> 
-                    </p>
-                    <div id="slider-range-max1"></div>
+                <li class="ranked_item" id="rank1">
+                    <section id="slider_1"> <!--wrapped sliders in section tags, can append to other elements-->
+                        <p>
+                            <label for="rating1">Rating:</label>
+                            <input type="text" id="rating1" readonly style="border:0; color:#f6931f; font-weight:bold;"> 
+                        </p>
+                        <div id="slider-range-max1"></div>
+                    </section>  
                 </li>
-                <li>#2 Spot
-                    <p>
-                        <label for="rating2">Rating:</label>
-                        <input type="text" id="rating2" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
-                    </p>
-                    <div id="slider-range-max2"></div>
+                <li class="ranked_item" id="rank2">
+                    <section id="slider_2">
+                        <p>
+                            <label for="rating2">Rating:</label>
+                            <input type="text" id="rating2" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
+                        </p>
+                        <div id="slider-range-max2"></div>
+                    </section>
                 </li>
-                <li>#3 Spot
-                    <p>
-                        <label for="rating3">Rating:</label>
-                        <input type="text" id="rating3" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
-                    </p>
-                    <div id="slider-range-max3"></div>
+                <li class="ranked_item" id="rank3">
+                    <section id="slider_3">
+                        <p>
+                            <label for="rating3">Rating:</label>
+                            <input type="text" id="rating3" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
+                        </p>
+                        <div id="slider-range-max3"></div>
+                    </section>
                 </li>
-                <li>#4 Spot
-                    <p>
-                        <label for="rating4">Rating:</label>
-                        <input type="text" id="rating4" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
-                    </p>
-                    <div id="slider-range-max4"></div>
+                <li class="ranked_item" id="rank4">
+                    <section id="slider_4">
+                        <p>
+                            <label for="rating4">Rating:</label>
+                            <input type="text" id="rating4" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
+                        </p>
+                        <div id="slider-range-max4"></div>
+                    </section>
                 </li>
-                <li>#5 Spot
-                    <p>
-                        <label for="rating5">Rating:</label>
-                        <input type="text" id="rating5" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
-                    </p>
-                    <div id="slider-range-max5"></div>
+                <li class="ranked_item" id="rank5">
+                    <section id="slider_5">
+                        <p>
+                            <label for="rating5">Rating:</label>
+                            <input type="text" id="rating5" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
+                        </p>
+                        <div id="slider-range-max5"></div>
+                    </section>
                 </li>
             </ol>
         </section>
