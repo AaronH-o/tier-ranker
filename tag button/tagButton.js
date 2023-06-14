@@ -39,7 +39,7 @@ listAddButton.addEventListener('click', function listAddButton()
     var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
     for(i = 0; i < list.length; i++)
     {
-      if(list[i].name == listItemName || listItemName == "")
+      if(list[i].name.toLowerCase() == listItemName.toLowerCase() || listItemName == "")
       {
         return; //if the item is already in the list, or the input is empty do nothing
       }
