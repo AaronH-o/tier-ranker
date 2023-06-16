@@ -1,7 +1,7 @@
 // variables selecting html list elements
 var resultsContainer = document.getElementById("results_container"); 
 var resultsList = document.getElementById("results_list"); // results_list is not being used for now
-var rankedList = document.getElementById("ranked_list");
+var rankedList = document.getElementById("itemList");
 
 resultsContainer.appendChild(rankedList);
 
