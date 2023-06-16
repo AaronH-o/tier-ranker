@@ -117,10 +117,11 @@ listAddButton.addEventListener('click', function listAddButton()
     var unRatedRow = document.createElement("div"); //creates a new row element (div) for unrated items
     unRatedRow.id = "unRatedRow"; //sets the id of the row element to unRatedRow
     unRatedRow.innerHTML = "Unrated Items"; //sets the innerHTML of the row element to Unrated Items
+    unRatedRow.style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center;"; //sets the style of the unRatedRow element
     document.querySelector("#itemList").appendChild(unRatedRow); //adds the row element to the list
 
     var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
-    for(i = 1; i < 11; i++){
+    for(i = 10; i > 0; i--){ //for each rating, starting at 10 and going down to 1
       var listRow = document.createElement("div"); //creates a new row element (div)
       listRow.id = "row" + i.toString(); //sets the innerHTML of the list element to the name of the item
       listRow.style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center;"; //sets the style of the row element
