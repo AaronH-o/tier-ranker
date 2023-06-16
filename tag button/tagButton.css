@@ -1,0 +1,34 @@
+.tagBar{
+    display: flex;
+    width: 100%;
+}
+
+.tagButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.tagButton:hover{
+    background-color: #ccc;
+}
+
+.clickedTagButton{
+    background-color: #000000;
+}
+
+/* TODO:
+    1. Add hover effect
+    2. Add active effect
+    3. Add disabled effect
+    4. Create tag list
+    5. Add scroll arrow for tags when list is too big
+*/

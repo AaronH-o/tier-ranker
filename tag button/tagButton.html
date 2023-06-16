@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  type = "text/css" rel = "stylesheet" href = "tagButton.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "tagBar row">
+        <button class = "tagButton" id = "tagButton">Tag 1</button>
+        <button class = "tagButton">Tag 2</button>
+        <button class = "tagButton">Tag 3</button>
+    </div>
+
+    <div inputContainer> <!-- TODO: add a button that allows you to delete items from list, and tags from items-->
+        <div> <!-- TODO: when the listInput button is clicked, it adds the list item to the list (both displayed list and stored list) then a new box for user input appears -->
+            <input type = "text" id = "listInput" placeholder = "Enter list item name">
+            <input type="number" min="1" max="10" value="1">
+            <button class = "addButton" id = "addListButton">Add List Item</button>
+        </div>
+
+        <div> <!-- TODO: when the tagInput button is clicked, it adds the tag to the tag list (both displayed list and stored list) then a new box for user input appears -->
+            <input type = "text" id = "tagInput" placeholder = "Enter tag name for list item">
+        </div>
+
+        <button class = "tagButton" id = "addTagButton">Add Tag</button>
+
+    </div>
+
+
+<script src = "tagButton.js"></script>
+</body>
+</html>
