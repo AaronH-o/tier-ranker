@@ -15,6 +15,7 @@ if(localStorage.getItem("sortSystem") == null) //if the itemCount is null, set i
 }
 
 var sortSystem = document.querySelector("#sortSystem"); //finds the sort system and ties variable to it
+var sortSystemValue = document.querySelector("#sortSystem").value; //gets the value of the sort system
 
 
 
@@ -35,7 +36,7 @@ tagButtons.forEach(function(currentBtn)  //adds an event listener to each tagBut
 })
 
 
-
+// __________________________________________ ADD LIST ITEM BUTTON __________________________________________
 var listAddButton = document.querySelector("#addListButton");
 console.log(listAddButton);
 listAddButton.addEventListener('click', function listAddButton()
@@ -53,13 +54,18 @@ listAddButton.addEventListener('click', function listAddButton()
       }
     }
 
-    
-    list.push({name: listItemName, tags: []}); //adds the item to the list
+    var elementRating = document.querySelector("#elementRating").value; //gets the value of the element rating
+    list.push({name: listItemName, tags: [], rating: elementRating}); //adds the item to the list and sets its rating equal to the element rating
     localStorage.setItem("itemList", JSON.stringify(list)); //saves the list to local storage
     console.log(list);
     window.location.reload(); //reloads the page
 
   });
+//_________________________________________________________________________________________________________
+
+
+
+// __________________________________________ CLEAR LIST BUTTON __________________________________________
 
   var clearListButton = document.querySelector("#clearListButton"); //finds the clear list button and ties variable to it
   clearListButton.addEventListener('click', function clearListFunction() //adds an event listener to the clear list button that clears the list
@@ -74,7 +80,10 @@ listAddButton.addEventListener('click', function listAddButton()
     localStorage.setItem("itemList", JSON.stringify([])); //sets the itemList to an empty array
     window.location.reload(); //reloads the page
   });
+// ________________________________________________________________________________________________________
 
+
+// ____________________________________________________________________________________
   if(localStorage.getItem("itemList") != JSON.stringify([]))
   {
     var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
@@ -86,27 +95,54 @@ listAddButton.addEventListener('click', function listAddButton()
       document.querySelector("#itemList").appendChild(listElement); //adds the list element to the list
     }
   }
+//_________________________________________________________________________________________________________
+
+
 
 
   if(sortSystem == null) //defined at top of code
   {
-    console.log("sortSystem is null");
+    console.log("sortSystem is null, setting to LMRating");
     sortSystem = "LMRating";
+    sortSystemValue = "LMRating";
   }
 
-  if(sortSystem == "LMRating"){
+
+// __________________________________________ SORT SYSTEM __________________________________________
+
+
+// __________________________________________ LMRATING __________________________________________
+  if(sortSystemValue == "LMRating"){
     console.log("LMRating sort initiated");
     var unRatedRow = document.createElement("div"); //creates a new row element (div) for unrated items
     unRatedRow.id = "unRatedRow"; //sets the id of the row element to unRatedRow
     unRatedRow.innerHTML = "Unrated Items"; //sets the innerHTML of the row element to Unrated Items
     document.querySelector("#itemList").appendChild(unRatedRow); //adds the row element to the list
 
-    document.querySelector("#itemList").appendChild(listRow); //adds the list element to the list
     var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
     for(i = 1; i < 11; i++){
       var listRow = document.createElement("div"); //creates a new row element (div)
-      listRow.id = i.toString(); //sets the innerHTML of the list element to the name of the item
+      listRow.id = "row" + i.toString(); //sets the innerHTML of the list element to the name of the item
+      listRow.style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center;"; //sets the style of the row element
+      listRow.innerHTML = "Row " + i.toString(); //sets the innerHTML of the row element to the name of the item
       document.querySelector("#itemList").appendChild(listRow); //adds the list element to the list
+    }
+    
+    for(i = 0; i < list.length; i++)
+    {
+      var itemRating = list[i].rating;
+      var listElement = document.createElement("div"); //creates a new list element (div)
+      listElement.innerHTML = list[i].name; //sets the innerHTML of the list element to the name of the item
+      if(itemRating > 0 && itemRating <11){
+        var elementRow = document.querySelector("#row" + itemRating.toString()); //finds the row that the item should be in
+        elementRow.appendChild(listElement); //adds the list element to the list
+        console.log("item added to row " + i.toString());
+      }
+      else{
+        document.querySelector("#unRatedRow").appendChild(listElement); //adds the list element to the list
+        console.log("item added to unrated row");
+      }
     }
     console.log(list);
   }
+//_________________________________________________________________________________________________________
