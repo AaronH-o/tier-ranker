@@ -9,6 +9,13 @@ if(localStorage.getItem("tagList") == null) //if the itemCount is null, set it t
   localStorage.setItem("tagList", JSON.stringify([])); //sets the tagList to an empty array when the page is loaded
 }
 
+if(localStorage.getItem("sortSystem") == null) //if the itemCount is null, set it to 0
+{
+  localStorage.setItem("sortSystem", "LMRating"); //sets the sortSystem to List Master Rating when the page is loaded
+}
+
+var sortSystem = document.querySelector("#sortSystem"); //finds the sort system and ties variable to it
+
 
 
 
@@ -56,8 +63,15 @@ listAddButton.addEventListener('click', function listAddButton()
   var clearListButton = document.querySelector("#clearListButton"); //finds the clear list button and ties variable to it
   clearListButton.addEventListener('click', function clearListFunction() //adds an event listener to the clear list button that clears the list
   {
+    confirm("Are you sure you want to clear the list?"); //asks the user if they are sure they want to clear the list
+    if(confirm == false) //if the user clicks cancel, do nothing
+    {
+      console.log("clear cancelled");
+      return;
+    }
     console.log("clear initiated");
     localStorage.setItem("itemList", JSON.stringify([])); //sets the itemList to an empty array
+    window.location.reload(); //reloads the page
   });
 
   if(localStorage.getItem("itemList") != JSON.stringify([]))
@@ -70,4 +84,24 @@ listAddButton.addEventListener('click', function listAddButton()
       listElement.innerHTML = list[i].name; //sets the innerHTML of the list element to the name of the item
       document.querySelector("#itemList").appendChild(listElement); //adds the list element to the list
     }
+  }
+
+
+  if(sortSystem == null) //defined at top of code
+  {
+    console.log("sortSystem is null");
+    sortSystem = "LMRating";
+  }
+
+  if(sortSystem == "LMRating"){
+    console.log("LMRating sort initiated");
+    var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
+    for(i = 0; i < list.length; i++){
+      var listElement = document.createElement("div"); //creates a new list element (div)
+      var listElementRating = document.createElement("div"); //creates a new list element (div)
+      listElement.innerHTML = list[i].name; //sets the innerHTML of the list element to the name of the item
+      document.querySelector("#itemList").appendChild(listElement); //adds the list element to the list
+
+    }
+    console.log(list);
   }
