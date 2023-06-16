@@ -59,3 +59,15 @@ listAddButton.addEventListener('click', function listAddButton()
     console.log("clear initiated");
     localStorage.setItem("itemList", JSON.stringify([])); //sets the itemList to an empty array
   });
+
+  if(localStorage.getItem("itemList") != JSON.stringify([]))
+  {
+    var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
+    console.log(list);
+    for(i = 0; i < list.length; i++)
+    {
+      var listElement = document.createElement("div"); //creates a new list element (div)
+      listElement.innerHTML = list[i].name; //sets the innerHTML of the list element to the name of the item
+      document.querySelector("#itemList").appendChild(listElement); //adds the list element to the list
+    }
+  }
