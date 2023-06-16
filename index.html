@@ -2,9 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tier Ranker</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .ui-slider { width: 25em; 
+    background-color: whitesmoke;} 
+    </style> <!--added inline styling for .ui-slider-->
+    <title>Tier Ranker</title>
 </head>
 <body>
-
+    <main>
+        <!--results_container will contain list of results pulled from API call that can be added to second ranked list-->
+        <section id="results_container">
+            <!--for MVP only need one list of items with results and rating sliders <ul id="results_list">
+                <h3>Your Results:</h3>    
+                <li>unsorted</li>
+            </ul>-->
+            <ol id="itemList">
+                <!--this ol contains html elements for ui sliders. API data can be appended to li-->
+                <h3>Your Ranking:</h3>
+                <li class="ranked_item" id="rank1">
+                    <section id="slider_1"> <!--wrapped sliders in section tags, can append to other elements-->
+                        <p>
+                            <label for="rating1">Rating:</label>
+                            <input type="text" id="rating1" readonly style="border:0; color:#f6931f; font-weight:bold;"> 
+                        </p>
+                        <div id="slider-range-max1"></div>
+                    </section>  
+                </li>
+                <li class="ranked_item" id="rank2">
+                    <section id="slider_2">
+                        <p>
+                            <label for="rating2">Rating:</label>
+                            <input type="text" id="rating2" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
+                        </p>
+                        <div id="slider-range-max2"></div>
+                    </section>
+                </li>
+                <li class="ranked_item" id="rank3">
+                    <section id="slider_3">
+                        <p>
+                            <label for="rating3">Rating:</label>
+                            <input type="text" id="rating3" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
+                        </p>
+                        <div id="slider-range-max3"></div>
+                    </section>
+                </li>
+                <li class="ranked_item" id="rank4">
+                    <section id="slider_4">
+                        <p>
+                            <label for="rating4">Rating:</label>
+                            <input type="text" id="rating4" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
+                        </p>
+                        <div id="slider-range-max4"></div>
+                    </section>
+                </li>
+                <li class="ranked_item" id="rank5">
+                    <section id="slider_5">
+                        <p>
+                            <label for="rating5">Rating:</label>
+                            <input type="text" id="rating5" readonly style="border:0; color:#f6931f; font-weight:bold; "> 
+                        </p>
+                        <div id="slider-range-max5"></div>
+                    </section>
+                </li>
+            </ol>
+        </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./assets/script.js"></script>
 </body>
