@@ -57,6 +57,7 @@ listAddButton.addEventListener('click', function listAddButton()
     list.push({name: listItemName, tags: []}); //adds the item to the list
     localStorage.setItem("itemList", JSON.stringify(list)); //saves the list to local storage
     console.log(list);
+    window.location.reload(); //reloads the page
 
   });
 
@@ -95,13 +96,17 @@ listAddButton.addEventListener('click', function listAddButton()
 
   if(sortSystem == "LMRating"){
     console.log("LMRating sort initiated");
-    var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
-    for(i = 0; i < list.length; i++){
-      var listElement = document.createElement("div"); //creates a new list element (div)
-      var listElementRating = document.createElement("div"); //creates a new list element (div)
-      listElement.innerHTML = list[i].name; //sets the innerHTML of the list element to the name of the item
-      document.querySelector("#itemList").appendChild(listElement); //adds the list element to the list
+    var unRatedRow = document.createElement("div"); //creates a new row element (div) for unrated items
+    unRatedRow.id = "unRatedRow"; //sets the id of the row element to unRatedRow
+    unRatedRow.innerHTML = "Unrated Items"; //sets the innerHTML of the row element to Unrated Items
+    document.querySelector("#itemList").appendChild(unRatedRow); //adds the row element to the list
 
+    document.querySelector("#itemList").appendChild(listRow); //adds the list element to the list
+    var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
+    for(i = 1; i < 11; i++){
+      var listRow = document.createElement("div"); //creates a new row element (div)
+      listRow.id = i.toString(); //sets the innerHTML of the list element to the name of the item
+      document.querySelector("#itemList").appendChild(listRow); //adds the list element to the list
     }
     console.log(list);
   }
