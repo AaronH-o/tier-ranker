@@ -4,9 +4,9 @@ if(localStorage.getItem("itemList") == null) //if the itemCount is null, set it 
   localStorage.setItem("itemList", JSON.stringify([])); //sets the itemList to an empty array when the page is loaded
 }
 
-if(localStorage.getItem("tagList") == null) //if the itemCount is null, set it to 0
+if(localStorage.getItem("tagListMaster") == null) //if the itemCount is null, set it to 0
 {
-  localStorage.setItem("tagList", JSON.stringify([])); //sets the tagList to an empty array when the page is loaded
+  localStorage.setItem("tagListMaster", JSON.stringify([])); //sets the tagListMaster to an empty array when the page is loaded
 }
 
 if(localStorage.getItem("sortSystem") == null) //if the itemCount is null, set it to 0
@@ -17,7 +17,10 @@ if(localStorage.getItem("sortSystem") == null) //if the itemCount is null, set i
 var sortSystem = document.querySelector("#sortSystem"); //finds the sort system and ties variable to it
 var sortSystemValue = document.querySelector("#sortSystem").value; //gets the value of the sort system
 
-
+var activeListElement = localStorage.getItem("#activeListElement"); //finds the active list element and ties variable to it
+if(activeListElement == null || activeListElement == "") { //if the active list element is null, set it to the list element in the editing bay (section at the top of the page)
+  activeListElement = document.querySelector("listInput");
+}
 
 
 var buttonCount = tagButton.length;
@@ -43,6 +46,7 @@ listAddButton.addEventListener('click', function listAddButton()
   {
     console.log("event listener added");
     var listItemName = document.querySelector("#listInput").value;
+    var tagInput = document.querySelector("#tagInput").value;
 
     var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
     for(i = 0; i < list.length; i++)
@@ -63,6 +67,37 @@ listAddButton.addEventListener('click', function listAddButton()
   });
 //_________________________________________________________________________________________________________
 
+// __________________________________________ ADD TAG BUTTON __________________________________________
+var tagAddButton = document.querySelector("#addTagButton");
+//console.log(tagAddButton);
+listAddButton.addEventListener('click', function tagAddButton()
+  {
+    console.log("tag click added");
+    var tagInput = document.querySelector("#tagInput").value;
+    var inMasterList = false;
+
+    if(tagInput == "" || tagInput == null) //if the tag input is empty, do nothing
+    {
+      console.log("tag input empty");
+      return;
+    }
+    var tagListMaster = JSON.parse(localStorage.getItem("tagListMaster")); //gets the tagListMaster from local storage
+    for(i = 0; i < tagListMaster.length; i++){
+      if(tagListMaster[i].name.toLowerCase() == tagInput.toLowerCase())
+      {
+        console.log("tag already in master list"); //if the tag is already in the masterList (regardless of capitalization), then don't add it to the master list
+        inMasterList = true;
+      }
+    }
+    if(inMasterList == false){ //if the tag is not in the master list, add it to the master list
+      tagListMaster.push({name: tagInput});
+    }
+
+    activeListElement.tags.push(tagInput); //adds the tag to the tag array of the active list element
+    localStorage.setItem("tagListMaster", JSON.stringify(tagListMaster)); //saves the tagListMaster to local storage (with the new tag added if applicable)
+
+  });
+//_________________________________________________________________________________________________________
 
 
 // __________________________________________ CLEAR LIST BUTTON __________________________________________
