@@ -25,6 +25,11 @@ if(localStorage.getItem("editBayTagList") == null) //if the editBayTagList is nu
   localStorage.setItem("editBayTagList", JSON.stringify([]));
 }
 
+if(localStorage.getItem("editBayListItem" == null)){ //if the editBayListItem is null, set it to an empty string
+  localStorage.setItem("editBayListItem", JSON.stringify([]));
+}
+document.querySelector("#listInput").value = localStorage.getItem("editBayListItem"); //sets the listInput value to the editBayListItem
+
 var sortSystem = document.querySelector("#sortSystem"); //finds the sort system and ties variable to it
 var sortSystemValue = document.querySelector("#sortSystem").value; //gets the value of the sort system
 
@@ -58,15 +63,12 @@ listAddButton.addEventListener('click', function listAddButton()
   {
     console.log("event listener added");
     var listItemName = document.querySelector("#listInput").value;
-    var tagInput = localStorage.getItem("activeListElement").tags;
-    if (tagInput = null) { //if the tag input is null, set it to an empty array
-      tagInput = [];
-    }
+    var tagInput = localStorage.getItem("editBayTagList");
 
-    var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
-    for(i = 0; i < list.length; i++)
+    var itemList = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
+    for(i = 0; i < itemList.length; i++)
     {
-      if(list[i].name.toLowerCase() == listItemName.toLowerCase() || listItemName == "")
+      if(itemList[i].name.toLowerCase() == listItemName.toLowerCase() || listItemName == "")
       {
         console.log("item already in list or empty");
         return; //if the item is already in the list (regardless of capitalization), or the input is empty, then do nothing
@@ -75,9 +77,12 @@ listAddButton.addEventListener('click', function listAddButton()
 
     var elementRating = document.querySelector("#elementRating").value; //gets the value of the element rating
     var elementTags = localStorage.getItem("elementTags"); //gets the value of the element tags
-    list.push({name: listItemName, tags: tagInput, rating: elementRating}); //adds the item to the list and sets its rating equal to the element rating
-    localStorage.setItem("itemList", JSON.stringify(list)); //saves the list to local storage
-    console.log(list);
+    itemList.push({name: listItemName, tags: tagInput, rating: elementRating}); //adds the item to the list and sets its rating equal to the element rating
+    localStorage.setItem("itemList", JSON.stringify(itemList)); //saves the list to local storage
+    console.log(itemList);
+
+    localStorage.setItem("editBayTagList", JSON.stringify([])); //resets the editBayTagList to an empty array
+    
     window.location.reload(); //reloads the page
 
   });
@@ -92,6 +97,8 @@ tagAddButton.addEventListener('click', function tagAddButton()
     var tagInput = document.querySelector("#tagInput").value;
     console.log(tagInput);
     var inMasterList = false;
+
+    localStorage.setItem("editBayListItem", document.querySelector("#listInput").value); //resets the editBayTagList to an empty array
 
     if(tagInput == "" || tagInput === null) //if the tag input is empty, do nothing
     {
@@ -156,8 +163,6 @@ for(i = 0; i < editBayTagList.length; i++)
   var editBayTagListButton = document.createElement("button"); //creates a button element
   editBayTagListButton.innerHTML = editBayTagList[i]; //sets the innerHTML of the button to the name of the tag
   editBayTagListButton.classList.add("tagButton"); //adds the tagButton class to the button
-  editBayTagListButton.addEventListener('click', function tagClick() { //adds an event listener to each tagButton that adds a class to change the color of the tag button when clicked and mark it as tagged
-  })
   document.querySelector("#editBayTagList").appendChild(editBayTagListButton); //adds the tagListMasterButton to the tagListMaster div
 }
 //_________________________________________________________________________________________________________
