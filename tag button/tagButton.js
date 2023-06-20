@@ -163,7 +163,21 @@ for(i = 0; i < editBayTagList.length; i++)
   var editBayTagListButton = document.createElement("button"); //creates a button element
   editBayTagListButton.innerHTML = editBayTagList[i]; //sets the innerHTML of the button to the name of the tag
   editBayTagListButton.classList.add("tagButton"); //adds the tagButton class to the button
+  editBayTagListButton.id = "editBayTagListButton";
   document.querySelector("#editBayTagList").appendChild(editBayTagListButton); //adds the tagListMasterButton to the tagListMaster div
+
+  var editBayTagListDeleteButton = document.createElement("button"); //creates a button element
+  editBayTagListDeleteButton.innerHTML = "X"; //sets the innerHTML of the button to the name of the tag
+  editBayTagListDeleteButton.addEventListener('click', function deleteTag() //adds an event listener to each tagButton that deletes the tag from the editBayTagList if clicked
+  {
+    event.stopPropagation();
+    console.log(this.parentElement.parentElement);
+    editBayTagList.splice(i, 1);
+    console.log("tag deleted");
+    localStorage.setItem("editBayTagList", JSON.stringify(editBayTagList)); //saves the editBayTagList to local storage (with the tag deleted)
+    window.location.reload(); //reloads the page
+  });
+  document.querySelector("#editBayTagListButton").appendChild(editBayTagListDeleteButton); //adds the tagListMasterButton to the tagListMaster div
 }
 //_________________________________________________________________________________________________________
 
