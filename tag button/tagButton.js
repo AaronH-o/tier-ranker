@@ -1,7 +1,9 @@
 //TODO: add a master list section to the document then populate it with the master list from local storage
 //TODO: add an active tags section to the document then populate it with the tags from the active list element
 //TODO: fix add tag button so that it adds the tag to the active list element instead of null (current)
+//TODO: make save progress function that saves the values being edited in the editing bay to the active list element
 
+var reload = false; //sets the reload variable to false
 
 if(localStorage.getItem("itemList") == null) //if the itemCount is null, set it to an empty array
 {
@@ -108,17 +110,18 @@ tagAddButton.addEventListener('click', function tagAddButton()
     localStorage.setItem("tagListMaster", JSON.stringify(tagListMaster)); //saves the tagListMaster to local storage (with the new tag added if applicable)
     console.log(tagListMaster);
     inMasterList = false; //resets the inMasterList variable to false
-    window.location.reload(); //reloads the page
+    //reload = true; //flags the page for reload
 
   });
 //_________________________________________________________________________________________________________
 
 
+// __________________________________________ tagListMasterDisplay __________________________________________
 var tagListMasterDisplay = JSON.parse(localStorage.getItem("tagListMaster")); //gets the tagListMaster from local storage
 for(i = 0; i < tagListMasterDisplay.length; i++)
 {
   var tagListMasterButton = document.createElement("button"); //creates a button element
-  tagListMasterButton.innerHTML = tagListMasterDisplay[i].value; //sets the innerHTML of the button to the name of the tag
+  tagListMasterButton.innerHTML = tagListMasterDisplay[i]; //sets the innerHTML of the button to the name of the tag
   tagListMasterButton.classList.add("tagButton"); //adds the tagButton class to the button
   tagListMasterButton.addEventListener('click', function tagClick() { //adds an event listener to each tagButton that adds a class to change the color of the tag button when clicked and mark it as tagged
   if(this.classList.contains("clickedTagButton")) //if the button is already clicked, remove the clickedTagButton class
@@ -135,8 +138,7 @@ for(i = 0; i < tagListMasterDisplay.length; i++)
   })
   document.querySelector("#tagListMaster").appendChild(tagListMasterButton); //adds the tagListMasterButton to the tagListMaster div
 }
-
-
+//_________________________________________________________________________________________________________
 
 
 
@@ -242,3 +244,9 @@ clearTagsButton.addEventListener('click', function clearTagsFunction() //adds an
     console.log(list);
   }
 //_________________________________________________________________________________________________________
+
+if(reload == true) //reloads the window if it has been flagged to reload by any of the functions
+{
+  reload = false;
+  window.location.reload();
+}
