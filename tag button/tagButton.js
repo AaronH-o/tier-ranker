@@ -20,6 +20,11 @@ if(localStorage.getItem("sortSystem") == null) //if the itemCount is null, set i
   localStorage.setItem("sortSystem", "LMRating"); //sets the sortSystem to List Master Rating when the page is loaded
 }
 
+if(localStorage.getItem("editBayTagList") == null) //if the editBayTagList is null, set it to an empty array
+{
+  localStorage.setItem("editBayTagList", JSON.stringify([]));
+}
+
 var sortSystem = document.querySelector("#sortSystem"); //finds the sort system and ties variable to it
 var sortSystemValue = document.querySelector("#sortSystem").value; //gets the value of the sort system
 
@@ -30,7 +35,7 @@ if(activeListElement == null || activeListElement == "") { //if the active list 
 }
 
 
-var buttonCount = tagButton.length;
+//var buttonCount = localStorage.getItem(tagListMaster).length();
 var tagButtons = document.querySelectorAll(".tagButton");
 tagButtons.forEach(function(currentBtn)  //adds an event listener to each tagButton that adds a class to change the color of the tag button when clicked and mark it as tagged
 {
@@ -78,7 +83,7 @@ listAddButton.addEventListener('click', function listAddButton()
   });
 //_________________________________________________________________________________________________________
 
-// __________________________________________ ADD TAG BUTTON __________________________________________
+// __________________________________________ ADD TAG BUTTON (edit bay)__________________________________________
 var tagAddButton = document.querySelector("#addTagButton");
 //console.log(tagAddButton);
 tagAddButton.addEventListener('click', function tagAddButton()
@@ -110,7 +115,11 @@ tagAddButton.addEventListener('click', function tagAddButton()
     localStorage.setItem("tagListMaster", JSON.stringify(tagListMaster)); //saves the tagListMaster to local storage (with the new tag added if applicable)
     console.log(tagListMaster);
     inMasterList = false; //resets the inMasterList variable to false
-    //reload = true; //flags the page for reload
+
+    var editBayTagList = JSON.parse(localStorage.getItem("editBayTagList")); //gets the tagListMaster from local storage
+    editBayTagList.push(tagInput); //adds the tag to the tag array of the active list element
+    localStorage.setItem("editBayTagList", JSON.stringify(editBayTagList)); //saves the editBayTagList to local storage (with the new tag added if applicable)
+    window.location.reload(); //reloads the page
 
   });
 //_________________________________________________________________________________________________________
@@ -137,6 +146,19 @@ for(i = 0; i < tagListMasterDisplay.length; i++)
   }
   })
   document.querySelector("#tagListMaster").appendChild(tagListMasterButton); //adds the tagListMasterButton to the tagListMaster div
+}
+//_________________________________________________________________________________________________________
+
+// __________________________________________ editBayTagList __________________________________________
+var editBayTagList = JSON.parse(localStorage.getItem("editBayTagList")); //gets the tagListMaster from local storage
+for(i = 0; i < editBayTagList.length; i++)
+{
+  var editBayTagListButton = document.createElement("button"); //creates a button element
+  editBayTagListButton.innerHTML = editBayTagList[i]; //sets the innerHTML of the button to the name of the tag
+  editBayTagListButton.classList.add("tagButton"); //adds the tagButton class to the button
+  editBayTagListButton.addEventListener('click', function tagClick() { //adds an event listener to each tagButton that adds a class to change the color of the tag button when clicked and mark it as tagged
+  })
+  document.querySelector("#editBayTagList").appendChild(editBayTagListButton); //adds the tagListMasterButton to the tagListMaster div
 }
 //_________________________________________________________________________________________________________
 
