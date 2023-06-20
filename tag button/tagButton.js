@@ -1,3 +1,7 @@
+//TODO: add a master list section to the document then populate it with the master list from local storage
+//TODO: add an active tags section to the document then populate it with the tags from the active list element
+//TODO: fix add tag button so that it adds the tag to the active list element instead of null (current)
+
 
 if(localStorage.getItem("itemList") == null) //if the itemCount is null, set it to an empty array
 {
@@ -75,35 +79,66 @@ listAddButton.addEventListener('click', function listAddButton()
 // __________________________________________ ADD TAG BUTTON __________________________________________
 var tagAddButton = document.querySelector("#addTagButton");
 //console.log(tagAddButton);
-listAddButton.addEventListener('click', function tagAddButton()
+tagAddButton.addEventListener('click', function tagAddButton()
   {
-    console.log("tag click added");
+    console.log("attempting to add tag");
     var tagInput = document.querySelector("#tagInput").value;
+    console.log(tagInput);
     var inMasterList = false;
 
-    if(tagInput == "" || tagInput == null) //if the tag input is empty, do nothing
+    if(tagInput == "" || tagInput === null) //if the tag input is empty, do nothing
     {
       console.log("tag input empty");
       return;
     }
     var tagListMaster = JSON.parse(localStorage.getItem("tagListMaster")); //gets the tagListMaster from local storage
     for(i = 0; i < tagListMaster.length; i++){
-      if(tagListMaster[i].name.toLowerCase() == tagInput.toLowerCase())
+      if(tagListMaster[i].toLowerCase() == tagInput.toLowerCase())
       {
         console.log("tag already in master list"); //if the tag is already in the masterList (regardless of capitalization), then don't add it to the master list
         inMasterList = true;
       }
     }
     if(inMasterList == false){ //if the tag is not in the master list, add it to the master list
-      tagListMaster.push({name: tagInput});
+      tagListMaster.push(tagInput);
+      console.log(tagInput + "tag added to master list");
     }
 
-    activeListElement.tags.push(tagInput); //adds the tag to the tag array of the active list element
+    //activeListElement.tags.push(tagInput); //adds the tag to the tag array of the active list element
     localStorage.setItem("tagListMaster", JSON.stringify(tagListMaster)); //saves the tagListMaster to local storage (with the new tag added if applicable)
+    console.log(tagListMaster);
     inMasterList = false; //resets the inMasterList variable to false
+    window.location.reload(); //reloads the page
 
   });
 //_________________________________________________________________________________________________________
+
+
+var tagListMasterDisplay = JSON.parse(localStorage.getItem("tagListMaster")); //gets the tagListMaster from local storage
+for(i = 0; i < tagListMasterDisplay.length; i++)
+{
+  var tagListMasterButton = document.createElement("button"); //creates a button element
+  tagListMasterButton.innerHTML = tagListMasterDisplay[i].value; //sets the innerHTML of the button to the name of the tag
+  tagListMasterButton.classList.add("tagButton"); //adds the tagButton class to the button
+  tagListMasterButton.addEventListener('click', function tagClick() { //adds an event listener to each tagButton that adds a class to change the color of the tag button when clicked and mark it as tagged
+  if(this.classList.contains("clickedTagButton")) //if the button is already clicked, remove the clickedTagButton class
+  { 
+    this.classList.remove("clickedTagButton");
+    console.log("tag clicked off");
+  }
+
+  else //if the button is not clicked, add the clickedTagButton class
+  {
+    this.classList.add("clickedTagButton");
+    console.log("tag clicked on");
+  }
+  })
+  document.querySelector("#tagListMaster").appendChild(tagListMasterButton); //adds the tagListMasterButton to the tagListMaster div
+}
+
+
+
+
 
 
 // __________________________________________ CLEAR LIST BUTTON __________________________________________
@@ -123,6 +158,25 @@ listAddButton.addEventListener('click', function tagAddButton()
   });
 // ________________________________________________________________________________________________________
 
+
+
+// __________________________________________ CLEAR TAGS BUTTON __________________________________________
+
+var clearTagsButton = document.querySelector("#clearTagListMasterButton"); //finds the clear tags button and ties variable to it
+clearTagsButton.addEventListener('click', function clearTagsFunction() //adds an event listener to the clear tags button that clears the tags
+{
+  confirm("Are you sure you want to clear the tags?"); //asks the user if they are sure they want to clear the tags
+  if(confirm == false) //if the user clicks cancel, do nothing
+  {
+    console.log("clear cancelled");
+    return;
+  }
+  console.log("clear initiated");
+  localStorage.setItem("tagListMaster", JSON.stringify([])); //sets the tagListMaster to an empty array
+  window.location.reload(); //reloads the page
+});
+
+//
 
 // ____________________________________________________________________________________
   if(localStorage.getItem("itemList") != JSON.stringify([]))

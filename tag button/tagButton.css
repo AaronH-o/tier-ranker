@@ -29,6 +29,10 @@
     background-color: #000000;
 }
 
+#tagListMaster{
+    width: 100%;
+}
+
 /* TODO:
     1. Add hover effect
     2. Add active effect
