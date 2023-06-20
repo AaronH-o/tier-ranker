@@ -21,6 +21,13 @@ const options = {
 
 function getAPI(requestUrl) {
   if(!requestUrl) return;
+  console.log('getAPI() called: ' + requestUrl);
+
+
+
+
+        
+
 
   if(platformInput === 'myanimelist') {
     fetch(requestUrl, options)
@@ -33,6 +40,7 @@ function getAPI(requestUrl) {
     })
     .then(function(data) {
       // TODO: process data, display data, and place in local storage
+      console.log(data);
 
     })
     .catch(function(error) {
@@ -48,6 +56,8 @@ function getAPI(requestUrl) {
     })
     .then(function(data) {
       // TODO: process data, display data, and place in local storage
+      console.log(data);
+
     })
     .catch(function(error) {
       console.error(error);
@@ -56,10 +66,10 @@ function getAPI(requestUrl) {
 }
 
 function generateRequestUrl(event) {
-  console.log(searchInput.value);
+
   if(!searchInput) {
     console.error('No search input');
-    //return;
+    return;
   }
 
   // prepare search string for insertion into urls
@@ -67,18 +77,14 @@ function generateRequestUrl(event) {
 
   var queryString = '';
 
-  
-  console.log('nice1');
   // searching imdb api
   if(platformInput === 'IMDB') {
     queryString += 'http://www.omdbapi.com/?';
     if(categoryInput === 'Title') {
       searchString = searchString.split(' ').join('+');
       queryString += 't=' + searchString + '&apikey=' + OMDbPublicKey;
-      console.log(queryString);
     } else if(categoryInput === 'ID') {
       queryString += 'i=' + searchString + '&apikey=' + OMDbPublicKey;
-      console.log(queryString);
     }
   }
 
@@ -88,10 +94,8 @@ function generateRequestUrl(event) {
     if(categoryInput === 'Title') {
       searchString = searchString.split(' ').join('%20');
       queryString += 'search/' + searchString;
-      console.log(queryString);
     } else if(categoryInput === 'ID') {
       queryString += id;
-      console.log(queryString);
     }
   }
 
@@ -105,10 +109,8 @@ function generateRequestUrl(event) {
       // console.log(queryString);
     } else if(categoryInput === 'ID') {
       queryString += id + '?apikey=' + marvelPublicKey;
-      console.log(queryString);
     }
   }
-
   return queryString;
 }
 
