@@ -18,7 +18,7 @@
         <div> <!-- TODO: when the listInput button is clicked, it adds the list item to the list (both displayed list and stored list) then a new box for user input appears -->
             <input type = "text" id = "listInput" placeholder = "Enter list item name">
             <input type="number" min="1" max="10" value="1">
-            <button class = "addButton" id = "addListButton">Add List Item</button>
+            <button onclick="getAPI(generateRequestUrl())" class = "addButton" id = "addListButton">Add List Item</button>
         </div>
 
         <div> <!-- TODO: when the tagInput button is clicked, it adds the tag to the tag list (both displayed list and stored list) then a new box for user input appears -->
@@ -42,5 +42,6 @@
     </div>
 
 <script src = "tagButton.js"></script>
+<script src="../apiFetch/script.js"></script>
 </body>
 </html>

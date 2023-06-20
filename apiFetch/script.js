@@ -1,11 +1,14 @@
 var fetchButton = document.getElementById('#addListButton');
-var searchInput = document.querySelector('#listInput').value;
+var searchInput = document.querySelector('#listInput');
 // TODO: adjust #category-input and #platform-input to appropriate values
-const categoryInput = document.querySelector('#category-input').value;
-const platformInput = document.querySelector('#platform-input').value;
+// const categoryInput = document.querySelector('#category-input').value;
+// const platformInput = document.querySelector('#platform-input').value;
+var categoryInput = 'Title';
+var platformInput = 'IMDB';
 
 // marvel API key
 const marvelPublicKey = '7b860beaace6f1d92b8fec268e2dca7b';
+const OMDbPublicKey = '995dd244';
 
 // MyAnimeList API key
 const options = {
@@ -41,12 +44,10 @@ function getAPI(requestUrl) {
       if(!response.ok) {
         throw response.json();
       }
-
       return response.json();
     })
     .then(function(data) {
       // TODO: process data, display data, and place in local storage
-
     })
     .catch(function(error) {
       console.error(error);
@@ -55,26 +56,28 @@ function getAPI(requestUrl) {
 }
 
 function generateRequestUrl(event) {
-
+  console.log(searchInput.value);
   if(!searchInput) {
     console.error('No search input');
-    return;
+    //return;
   }
 
   // prepare search string for insertion into urls
-  searchInput = searchInput.split(' ').join('+');
+  var searchString = searchInput.value;
 
   var queryString = '';
 
+  
+  console.log('nice1');
   // searching imdb api
   if(platformInput === 'IMDB') {
     queryString += 'http://www.omdbapi.com/?';
     if(categoryInput === 'Title') {
-      searchInput = searchInput.split(' ').join('+');
-      queryString += 't=' + searchInput;
+      searchString = searchString.split(' ').join('+');
+      queryString += 't=' + searchString + '&apikey=' + OMDbPublicKey;
       console.log(queryString);
     } else if(categoryInput === 'ID') {
-      queryString += 'i=' + searchInput;
+      queryString += 'i=' + searchString + '&apikey=' + OMDbPublicKey;
       console.log(queryString);
     }
   }
@@ -83,8 +86,8 @@ function generateRequestUrl(event) {
   else if(platformInput === 'myanimelist') {
     queryString += 'https://myanimelist.p.rapidapi.com/anime/';
     if(categoryInput === 'Title') {
-      searchInput = searchInput.split(' ').join('%20');
-      queryString += 'search/' + searchInput;
+      searchString = searchString.split(' ').join('%20');
+      queryString += 'search/' + searchString;
       console.log(queryString);
     } else if(categoryInput === 'ID') {
       queryString += id;
@@ -108,7 +111,5 @@ function generateRequestUrl(event) {
 
   return queryString;
 }
-
-fetchButton.addEventListener(click, getAPI(generateRequestUrl));
 
 // TODO: parse data depending on which API was called
