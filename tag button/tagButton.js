@@ -20,6 +20,7 @@ var sortSystemValue = document.querySelector("#sortSystem").value; //gets the va
 var activeListElement = localStorage.getItem("#activeListElement"); //finds the active list element and ties variable to it
 if(activeListElement == null || activeListElement == "") { //if the active list element is null, set it to the list element in the editing bay (section at the top of the page)
   activeListElement = document.querySelector("listInput");
+  localStorage.setItem("activeListElement", activeListElement);
 }
 
 
@@ -46,7 +47,10 @@ listAddButton.addEventListener('click', function listAddButton()
   {
     console.log("event listener added");
     var listItemName = document.querySelector("#listInput").value;
-    var tagInput = document.querySelector("#tagInput").value;
+    var tagInput = localStorage.getItem("activeListElement").tags;
+    if (tagInput = null) { //if the tag input is null, set it to an empty array
+      tagInput = [];
+    }
 
     var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
     for(i = 0; i < list.length; i++)
@@ -59,7 +63,8 @@ listAddButton.addEventListener('click', function listAddButton()
     }
 
     var elementRating = document.querySelector("#elementRating").value; //gets the value of the element rating
-    list.push({name: listItemName, tags: [], rating: elementRating}); //adds the item to the list and sets its rating equal to the element rating
+    var elementTags = localStorage.getItem("elementTags"); //gets the value of the element tags
+    list.push({name: listItemName, tags: tagInput, rating: elementRating}); //adds the item to the list and sets its rating equal to the element rating
     localStorage.setItem("itemList", JSON.stringify(list)); //saves the list to local storage
     console.log(list);
     window.location.reload(); //reloads the page
@@ -95,6 +100,7 @@ listAddButton.addEventListener('click', function tagAddButton()
 
     activeListElement.tags.push(tagInput); //adds the tag to the tag array of the active list element
     localStorage.setItem("tagListMaster", JSON.stringify(tagListMaster)); //saves the tagListMaster to local storage (with the new tag added if applicable)
+    inMasterList = false; //resets the inMasterList variable to false
 
   });
 //_________________________________________________________________________________________________________
