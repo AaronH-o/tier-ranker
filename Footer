@@ -12,7 +12,7 @@
       <ul>
         <li><a href="http://www.omdbapi.com/?">OMDB API</a>
         </li>
-        <li><a href="https://myanimelist.p.rapidapi.com/anime/">Myanimelist API</a>
+        <li><a https://myanimelist.net/apiconfig/references/api/v2">Myanimelist API</a>
         </li>
         <li><a href="https://developer.fandango.com/Rotten_Tomatoes">Rotten Tomatoes API</a>
         </li>
