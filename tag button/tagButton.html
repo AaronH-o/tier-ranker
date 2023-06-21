@@ -8,6 +8,18 @@
     <title>Document</title>
 </head>
 <body>
+    <div id = "popUp" style="display: none;"> <!-- popUp is normally hidden until a list item is clicked-->
+        <div>
+            <input type = "text" id = "editListItem" placeholder = "Enter list item name">
+            <input type="number" min="0" max="10" value="0" id = "editListItemRating">
+        </div>
+
+        <div> <!-- TODO: when the tagInput button is clicked, it adds the tag to the tag list (both displayed list and stored list) then a new box for user input appears -->
+            <input type = "text" id = "editListItemTags" placeholder = "Enter tag name for list item">
+            <button class = "editTagButton" id = "editListAddTagButton">Add Tag</button>
+        </div>
+    </div>
+
     <h1>TIER RANKER</h1>
 
 <!--____________________ START OF EDITING BAY _________________________________-->
@@ -39,7 +51,7 @@
             <option value="LMRating">Your rating (Default)</option>
             <option value="releaseDate">Release Order</option>
           </select>
-        <div class = "listDisplay" id = "itemList"> <!-- container where the list will be displayed (TODO: add tiers/rows for the list display so multiple list items can be displayed on the same tier/row)-->
+        <div class = "listDisplay" id = "itemList"> <!-- container where the list will be displayed -->
             <h1>List goes here:</h1><!--list populates here-->
         </div>
         <button class = "removeButton" id = "clearListButton">Clear All List Items</button> <!--Clears all items from the list-->

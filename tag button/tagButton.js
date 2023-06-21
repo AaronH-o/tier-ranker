@@ -1,7 +1,3 @@
-//TODO: add a master list section to the document then populate it with the master list from local storage
-//TODO: add an active tags section to the document then populate it with the tags from the active list element
-//TODO: fix add tag button so that it adds the tag to the active list element instead of null (current)
-//TODO: make save progress function that saves the values being edited in the editing bay to the active list element
 
 var reload = false; //sets the reload variable to false
 
@@ -219,7 +215,6 @@ clearTagsButton.addEventListener('click', function clearTagsFunction() //adds an
   window.location.reload(); //reloads the page
 });
 
-//
 
 // ____________________________________________________________________________________
   if(localStorage.getItem("itemList") != JSON.stringify([]))
@@ -272,6 +267,7 @@ clearTagsButton.addEventListener('click', function clearTagsFunction() //adds an
       var itemRating = list[i].rating;
       var listElement = document.createElement("div"); //creates a new list element (div)
       listElement.innerHTML = list[i].name; //sets the innerHTML of the list element to the name of the item
+      listElement.classList.add("listItem"); //adds the listItem class to the list element
       if(itemRating > 0 && itemRating <11){
         var elementRow = document.querySelector("#row" + itemRating.toString()); //finds the row that the item should be in
         elementRow.appendChild(listElement); //adds the list element to the list
@@ -285,6 +281,40 @@ clearTagsButton.addEventListener('click', function clearTagsFunction() //adds an
     console.log(list);
   }
 //_________________________________________________________________________________________________________
+
+
+
+//__________________________________________EDIT LIST ELEMENTS_____________________________________________
+
+var listItems = document.querySelectorAll(".listItem");
+listItems.forEach(function(currentBtn)
+{
+  currentBtn.addEventListener('click', function ListItemClick() 
+  {
+    if(currentBtn.classList.contains("clickedListElement")){ //if the list element is already clicked do nothing
+      return;
+    }
+    else{
+      currentBtn.classList.add("clickedListElement"); //adds the clickedListElement class to the list element
+    }
+
+    var listItemClone = document.createElement("div");
+    listItemClone.classList.add("listItemPopUp");
+    listItemClone.innerHTML = this.innerHTML;
+    listItemClone.id = "listItemPopUp";
+    //document.querySelector("#popUp").appendChild(listItemClone);
+    document.querySelector("#popUp").style = "display: block;";
+  });
+})
+
+if(listItems.length > 0){ //if the document has at least one 
+  document.querySelector("#popUp").style.display = "block";
+}
+
+//_________________________________________________________________________________________________________
+
+
+
 
 if(reload == true) //reloads the window if it has been flagged to reload by any of the functions
 {
