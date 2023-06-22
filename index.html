@@ -2,29 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="assets/style.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <style>
         .ui-slider { width: 25em; 
     background-color: whitesmoke;} 
     </style> <!--added inline styling for .ui-slider-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Tier Ranker</title>
 </head>
 <body>
-    <object type="text/html" data="tag button/tagButton.html"></object>
+    <object type="text/html" data="tag button/tagButton.html" class="panel" width="1000" height="1000"></object>
     <main>
         <!--results_container will contain list of results pulled from API call that can be added to second ranked list-->
+    <!--this ol contains html elements for ui sliders. API data can be appended to li. added Bulma panel styling. wrapped sliders in section tags, can append to other elements
         <nav class="panel" id="results_container">
-            <!--for MVP only need one list of items with results and rating sliders <ul id="results_list">
-                <h3>Your Results:</h3>    
-                <li>unsorted</li>
-            </ul>-->
+            
             <ol id="itemList">
-                <!--this ol contains html elements for ui sliders. API data can be appended to li-->
-                <h3 class="panel-heading">Your Ranking:</h3> <!--added Tailwind panel styling-->
+                
+                <h3 class="panel-heading">Your Ranking:</h3> 
                 <li class="panel-block" class="ranked_item" id="rank1">
-                    <section id="slider_1"> <!--wrapped sliders in section tags, can append to other elements-->
+                    <section id="slider_1"> 
                         <p>
                             <label for="rating1">Rating:</label>
                             <input type="text" id="rating1" readonly style="border:0; color:#f6931f; font-weight:bold;"> 
@@ -69,12 +68,8 @@
                     </section>
                 </li>
             </ol>
-        </nav>
-    </main>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="./assets/script.js"></script>
-</body>
+        </nav>-->
+    </main> 
     <footer>
     </nav>
       <p>Github Repository Link</p>
@@ -104,4 +99,8 @@
       </ul>  
     </nav>
     </footer>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./assets/script.js"></script>
+</body>
 </html>

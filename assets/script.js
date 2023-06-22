@@ -3,7 +3,7 @@ var resultsContainer = document.getElementById("results_container");
 var resultsList = document.getElementById("results_list"); // results_list is not being used for now
 var rankedList = document.getElementById("itemList");
 
-resultsContainer.appendChild(rankedList);
+// resultsContainer.appendChild(rankedList);
 
 // issue: appending html element to sortable table row/li causes it not to be sortable
 // for MVP will stick with adding rating sliders for each result item, will revist sortable list
