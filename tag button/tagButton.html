@@ -7,19 +7,8 @@
     <link  type = "text/css" rel = "stylesheet" href = "tagButton.css">
     <title>Document</title>
 </head>
+
 <body>
-    <div id = "popUp" style="display: none;"> <!-- popUp is normally hidden until a list item is clicked-->
-        <div>
-            <input type = "text" id = "editListItem" placeholder = "Enter list item name">
-            <input type="number" min="0" max="10" value="0" id = "editListItemRating">
-        </div>
-
-        <div> <!-- TODO: when the tagInput button is clicked, it adds the tag to the tag list (both displayed list and stored list) then a new box for user input appears -->
-            <input type = "text" id = "editListItemTags" placeholder = "Enter tag name for list item">
-            <button class = "editTagButton" id = "editListAddTagButton">Add Tag</button>
-        </div>
-    </div>
-
     <h1>TIER RANKER</h1>
 
 <!--____________________ START OF EDITING BAY _________________________________-->
@@ -56,6 +45,30 @@
         </div>
         <button class = "removeButton" id = "clearListButton">Clear All List Items</button> <!--Clears all items from the list-->
     </div>
+
+
+<!--________________________ POP UP WINDOW FOR LIST EDITING _______________________________-->
+
+    <div id = "popUp" style="display: none;"> <!-- popUp is normally hidden until a list item is clicked-->
+        <button class = "removeButton" id = "closePopUpButton"> X </button>
+        <div>
+            <input type = "text" id = "editListItem" placeholder = "Enter list item name">
+            <input type="number" min="0" max="10" value="0" id = "editListItemRating">
+        </div>
+
+        <div> <!-- TODO: when the tagInput button is clicked, it adds the tag to the tag list (both displayed list and stored list) then a new box for user input appears -->
+            <input type = "text" id = "editListItemTags" placeholder = "Enter tag name for list item">
+            <button class = "editTagButton" id = "editListAddTagButton">Add Tag</button>
+        </div>
+    </div>
+
+<!-- ____________________________________________________________________________________-->
+
+
+
+
+    <div id = "extraSpace"></div> <!-- extra space to make the page look nicer -->
+
 
 <script src = "tagButton.js"></script>
 </body>

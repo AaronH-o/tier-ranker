@@ -286,16 +286,30 @@ clearTagsButton.addEventListener('click', function clearTagsFunction() //adds an
 
 //__________________________________________EDIT LIST ELEMENTS_____________________________________________
 
+var popUpOpen = false;
 var listItems = document.querySelectorAll(".listItem");
 listItems.forEach(function(currentBtn)
 {
   currentBtn.addEventListener('click', function ListItemClick() 
   {
-    if(currentBtn.classList.contains("clickedListElement")){ //if the list element is already clicked do nothing
-      return;
+
+    if(popUpOpen == true && currentBtn.classList.contains("clickedListElement") == false){
+      return; //if the pop up is open and the clicked list element is not the one that opened it, do nothing
     }
-    else{
-      currentBtn.classList.add("clickedListElement"); //adds the clickedListElement class to the list element
+
+    else if(popUpOpen == true && currentBtn.classList.contains("clickedListElement")){ //if the pop up is open and the clicked list element is the one that opened it, close the pop up
+      popUpOpen = false;
+      currentBtn.classList.remove("clickedListElement");
+      document.querySelector("#popUp").style = "display: none;";
+      console.log("pop up closed");
+
+    }
+
+    else{ //if the pop up is not open, open it
+        popUpOpen = true;
+        currentBtn.classList.add("clickedListElement"); //adds the clickedListElement class to the list element
+        document.querySelector("#popUp").style = "display: block;"; //displays the pop up
+        console.log("pop up opened");
     }
 
     var listItemClone = document.createElement("div");
@@ -303,13 +317,9 @@ listItems.forEach(function(currentBtn)
     listItemClone.innerHTML = this.innerHTML;
     listItemClone.id = "listItemPopUp";
     //document.querySelector("#popUp").appendChild(listItemClone);
-    document.querySelector("#popUp").style = "display: block;";
+    //document.querySelector("#popUp").style = "display: block;";
   });
-})
-
-if(listItems.length > 0){ //if the document has at least one 
-  document.querySelector("#popUp").style.display = "block";
-}
+});
 
 //_________________________________________________________________________________________________________
 
