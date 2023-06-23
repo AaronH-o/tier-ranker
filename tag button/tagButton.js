@@ -1,3 +1,4 @@
+
 var reload = false; //sets the reload variable to false
 
 if(localStorage.getItem("itemList") == null) //if the itemCount is null, set it to an empty array
@@ -5,9 +6,9 @@ if(localStorage.getItem("itemList") == null) //if the itemCount is null, set it 
   localStorage.setItem("itemList", JSON.stringify([])); //sets the itemList to an empty array when the page is loaded
 }
 
-if(localStorage.getItem("tagListMaster") == null) //if the itemCount is null, set it to 0
+if(localStorage.getItem("tagListMasterMaster") == null) //if the itemCount is null, set it to 0
 {
-  localStorage.setItem("tagListMaster", JSON.stringify([])); //sets the tagListMaster to an empty array when the page is loaded
+  localStorage.setItem("tagListMasterMaster", JSON.stringify([])); //sets the tagListMasterMaster to an empty array when the page is loaded
 }
 
 if(localStorage.getItem("sortSystem") == null) //if the itemCount is null, set it to 0
@@ -250,7 +251,6 @@ clearTagsButton.addEventListener('click', function clearTagsFunction() //adds an
     unRatedRow.id = "unRatedRow"; //sets the id of the row element to unRatedRow
     unRatedRow.innerHTML = "Unrated Items"; //sets the innerHTML of the row element to Unrated Items
     unRatedRow.style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center;"; //sets the style of the unRatedRow element
-    // changing flex-direction to column will make the list vertical
     document.querySelector("#itemList").appendChild(unRatedRow); //adds the row element to the list
 
     var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
@@ -280,6 +280,7 @@ clearTagsButton.addEventListener('click', function clearTagsFunction() //adds an
         console.log("item added to unrated row");
       }
     }
+    
     console.log(list);
   }
 //_________________________________________________________________________________________________________
@@ -288,16 +289,30 @@ clearTagsButton.addEventListener('click', function clearTagsFunction() //adds an
 
 //__________________________________________EDIT LIST ELEMENTS_____________________________________________
 
+var popUpOpen = false;
 var listItems = document.querySelectorAll(".listItem");
 listItems.forEach(function(currentBtn)
 {
   currentBtn.addEventListener('click', function ListItemClick() 
   {
-    if(currentBtn.classList.contains("clickedListElement")){ //if the list element is already clicked do nothing
-      return;
+
+    if(popUpOpen == true && currentBtn.classList.contains("clickedListElement") == false){
+      return; //if the pop up is open and the clicked list element is not the one that opened it, do nothing
     }
-    else{
-      currentBtn.classList.add("clickedListElement"); //adds the clickedListElement class to the list element
+
+    else if(popUpOpen == true && currentBtn.classList.contains("clickedListElement")){ //if the pop up is open and the clicked list element is the one that opened it, close the pop up
+      popUpOpen = false;
+      currentBtn.classList.remove("clickedListElement");
+      document.querySelector("#popUp").style = "display: none;";
+      console.log("pop up closed");
+
+    }
+
+    else{ //if the pop up is not open, open it
+        popUpOpen = true;
+        currentBtn.classList.add("clickedListElement"); //adds the clickedListElement class to the list element
+        document.querySelector("#popUp").style = "display: block;"; //displays the pop up
+        console.log("pop up opened");
     }
 
     var listItemClone = document.createElement("div");
@@ -305,13 +320,9 @@ listItems.forEach(function(currentBtn)
     listItemClone.innerHTML = this.innerHTML;
     listItemClone.id = "listItemPopUp";
     //document.querySelector("#popUp").appendChild(listItemClone);
-    document.querySelector("#popUp").style = "display: block;";
+    //document.querySelector("#popUp").style = "display: block;";
   });
-})
-
-if(listItems.length > 0){ //if the document has at least one 
-  document.querySelector("#popUp").style.display = "block";
-}
+});
 
 //_________________________________________________________________________________________________________
 
