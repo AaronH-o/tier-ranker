@@ -1,6 +1,7 @@
-let fetchButton = document.getElementById('addListButton');
+var fetchButton = document.getElementById('addListButton');
 var searchInput = document.getElementById('listInput');
 var resultsHolder = document.getElementById('itemList'); 
+var listElement = document.getElementById('listElement');
 
 const categoryInput = document.getElementById('category-input');
 const platformInput = document.getElementById('platform-input');
@@ -8,8 +9,8 @@ const platformInput = document.getElementById('platform-input');
 // create API request URL
 
 fetchButton.addEventListener('click', function(event){
-    
-    event.preventDefault();
+    console.log(event)
+    //event.preventDefault();
 
     var search = searchInput.value;
   
@@ -34,7 +35,7 @@ function getAPI(search) {
     
       if(platformInput.value === 'myanimelist') { // searching myanimelist api using jikan.moe, free alternative, creates a new url for each search
           var malUrl = 'https://api.jikan.moe/v4/anime?'
-          if(categoryInput === 'Title') {
+          if(categoryInput.value === 'Title') {
             search = search.split(' ').join('%20');
             malUrl += 'q=' + search;
             console.log(malUrl);
@@ -54,7 +55,7 @@ function getAPI(search) {
         console.log(omdbUrl);
         } else {
         omdbUrl += '&i=' + search;
-          console.log(omdbUrl);
+          
         } 
       
       if(platformInput.value === 'Marvel Comics' && categoryInput.value === 'Title') { // marvel comics api, creates a new url for each search
@@ -66,13 +67,13 @@ function getAPI(search) {
         console.log(marvelUrl);
         } else {
         marvelUrl += '&id' + search;
-        console.log(marvelUrl);
+        
         }
       // fetch data from APIs, limiting results to 1 for all   
       if(platformInput.value === "OMDB/IMDB" && categoryInput.value === 'Title') {
         fetch(omdbUrl)
         .then(function(response) {
-          resultsHolder.innerHTML = '';
+          // resultsHolder.innerHTML = '';
           if(!response.ok) {
             throw response.json();
           }
@@ -106,7 +107,7 @@ function getAPI(search) {
       if(platformInput.value === 'Marvel Comics' && categoryInput.value === 'Title') {
       fetch(marvelUrl)
       .then(function(response) {
-        resultsHolder.innerHTML = '';
+        // resultsHolder.innerHTML = '';
         if(!response.ok) {
           throw response.json();
         }

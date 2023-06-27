@@ -35,8 +35,18 @@
         <!-- tagListMaster is populated here-->
     </div>
 
-    <button class = "removeButton" id = "clearTagListMasterButton">Clear Tag List</button> <!--Clears all tags from the tag list master-->
-    
+    <button class = "removeButton" id = "clearTagListMasterButton">Clear Tag List</button><br> <!--Clears all tags from the tag list master-->
+    <label for="categoryDropdown">Category</label>
+    <select name="category" id="category-input" placeholder="category">
+        <option value="Title">Title</option>
+        <option value="ID">ID</option>
+    </select><br/>
+    <label for="platformSelect">Platform</label>
+        <select name="platform" id="platform-input" placeholder="platform">
+            <option value="OMDB/IMDB">OMDB/IMDB</option>
+            <option value="Marvel Comics">Marvel Comics</option>
+            <option value="myanimelist">myanimelist</option>
+        </select>
     <div class = "listContainer" class= "block">
         <label for="sortSystem">Choose a sorting system:</label>
         <select id="sortSystem">
@@ -74,5 +84,6 @@
 
 
 <script src = "tagButton.js"></script>
+<script src = "./apiFetch.js"></script>
 </body>
 </html>

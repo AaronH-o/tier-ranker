@@ -224,6 +224,7 @@ clearTagsButton.addEventListener('click', function clearTagsFunction() //adds an
     for(i = 0; i < list.length; i++)
     {
       var listElement = document.createElement("div"); //creates a new list element (div)
+      listElement.setAttribute("id", "listElement"); //adds the listItem class to the list element
       listElement.innerHTML = list[i].name; //sets the innerHTML of the list element to the name of the item
       //document.querySelector("#itemList").appendChild(listElement); //adds the list element to the list
     }
