@@ -3,7 +3,7 @@
 }
 
 h1 {
-    background-color: aliceblue;
+    background-color: #bfdef8;
 }
 
 .tagBar{
@@ -19,7 +19,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 25em;
+    width: 10em;
     height: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
@@ -27,6 +27,11 @@ h1 {
     margin-right: 0.5rem;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+}
+
+.addButton {
+    width: 15em;
+    height: 100%;
 }
 
 .editTagButton{

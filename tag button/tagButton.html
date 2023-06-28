@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link  type = "text/css" rel = "stylesheet" href = "tagButton.css">
+    <link rel="stylesheet" href="./normalize.css"> <!-- normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css -->
     
     <title>Document</title>
 
@@ -15,13 +16,13 @@
     <h1>TIER RANKER</h1>
 
 <!--____________________ START OF EDITING BAY _________________________________-->
-    <div class = "inputContainer"> <!-- TODO: add a button that allows you to delete items from list, and tags from items-->
-        <div> <!-- TODO: when the listInput button is clicked, it adds the list item to the list (both displayed list and stored list) then a new box for user input appears -->
+    <div class = "inputContainer" class="panel"> <!-- TODO: add a button that allows you to delete items from list, and tags from items-->
+        <div class="panel-block"> <!-- TODO: when the listInput button is clicked, it adds the list item to the list (both displayed list and stored list) then a new box for user input appears -->
             <input type = "text" id = "listInput" placeholder = "Enter list item name">
             <input type="number" min="0" max="10" value="0" id = "elementRating">
         </div>
 
-        <div> <!-- TODO: when the tagInput button is clicked, it adds the tag to the tag list (both displayed list and stored list) then a new box for user input appears -->
+        <div class="panel-block"> <!-- TODO: when the tagInput button is clicked, it adds the tag to the tag list (both displayed list and stored list) then a new box for user input appears -->
             <input type = "text" id = "tagInput" placeholder = "Enter tag name for list item">
             <button class = "tagButton" id = "addTagButton">Add Tag</button>
             <div id = "editBayTagList">Edit Bay Tag List:</div>
@@ -31,7 +32,7 @@
     </div>
 
     <div class = "tagListMaster" id = "tagListMaster">
-        <h1>Tag List:</h1>
+        <h2>Tag List:</h2>
         <!-- tagListMaster is populated here-->
     </div>
 
@@ -54,7 +55,7 @@
             <option value="releaseDate">Release Order</option>
           </select>
         <div class = "listDisplay" id = "itemList"> <!-- container where the list will be displayed -->
-            <h1>List goes here:</h1><!--list populates here-->
+            <h2>List goes here:</h2><!--list populates here-->
         </div>
         <button class = "removeButton" id = "clearListButton">Clear All List Items</button> <!--Clears all items from the list-->
     </div>

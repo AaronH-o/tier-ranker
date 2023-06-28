@@ -11,7 +11,7 @@ var rankedList = document.getElementById("itemList");
 // added jQuery sliders to each list item for user input 
 // sliders are wrapped in section tags id=slider_1 to 5, can append to API results
 // slider values can be stored in variables: var min/max = $( ".selector" ).slider( "option", "min"/"max" ); 
-$( function() {
+/*$( function() {
     $( "#slider-range-max1" ).slider({
       range: "max",
       min: 1,
@@ -67,7 +67,7 @@ $( function() {
       });
       $( "#rating5" ).val( $( "#slider-range-max5" ).slider( "value" ) );
 
-  });
+  }); */
 
 
 // one option: place unsorted items in an object and use json to retrieve document.write(obj.key[1].)

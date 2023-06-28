@@ -6,9 +6,9 @@ if(localStorage.getItem("itemList") == null) //if the itemCount is null, set it 
   localStorage.setItem("itemList", JSON.stringify([])); //sets the itemList to an empty array when the page is loaded
 }
 
-if(localStorage.getItem("tagListMasterMaster") == null) //if the itemCount is null, set it to 0
+if(localStorage.getItem("tagListMaster") == null) //if the itemCount is null, set it to 0
 {
-  localStorage.setItem("tagListMasterMaster", JSON.stringify([])); //sets the tagListMasterMaster to an empty array when the page is loaded
+  localStorage.setItem("tagListMaster", JSON.stringify([])); //sets the tagListMasterMaster to an empty array when the page is loaded
 }
 
 if(localStorage.getItem("sortSystem") == null) //if the itemCount is null, set it to 0
@@ -251,7 +251,8 @@ clearTagsButton.addEventListener('click', function clearTagsFunction() //adds an
     var unRatedRow = document.createElement("div"); //creates a new row element (div) for unrated items
     unRatedRow.id = "unRatedRow"; //sets the id of the row element to unRatedRow
     unRatedRow.innerHTML = "Unrated Items"; //sets the innerHTML of the row element to Unrated Items
-    unRatedRow.style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center;"; //sets the style of the unRatedRow element
+    unRatedRow.style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center; font-weight: lighter"; //sets the style of the unRatedRow element
+    unRatedRow.setAttribute("class", "panel-block"); //added panel-block Bulma class to unRatedRow
     document.querySelector("#itemList").appendChild(unRatedRow); //adds the row element to the list
 
     var list = JSON.parse(localStorage.getItem("itemList")); //gets the itemList from local storage
@@ -260,6 +261,7 @@ clearTagsButton.addEventListener('click', function clearTagsFunction() //adds an
       listRow.id = "row" + i.toString(); //sets the innerHTML of the list element to the name of the item
       listRow.style = "display: flex; flex-direction: row; justify-content: space-between; align-items: center;"; //sets the style of the row element
       listRow.innerHTML = "Row " + i.toString(); //sets the innerHTML of the row element to the name of the item
+      listRow.setAttribute("class", "panel-block"); //added panel-block Bulma class to listRow
       document.querySelector("#itemList").appendChild(listRow); //adds the list element to the list
       
     }
