@@ -1,30 +1,106 @@
+<!--Consolidated all HTML files into this index file, contains deprecated code for JQuery sliders (./assets/script.js)-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link  type = "text/css" rel = "stylesheet" href = "./tag button/tagButton.css">
+    <link rel="stylesheet" href="./tag button/normalize.css"> <!-- normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css -->
     <style>
         .ui-slider { width: 25em; 
     background-color: whitesmoke;} 
     </style> <!--added inline styling for .ui-slider-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Tier Ranker</title>
 </head>
 <body>
-    <object type="text/html" data="tag button/tagButton.html"></object>
+    <!--<object type="text/html" data="tag button/tagButton.html" class="panel" width="1000" height="1000"></object>-->
     <main>
+        <body>
+            <h1>TIER RANKER</h1>
+        
+        <!--____________________ START OF EDITING BAY _________________________________-->
+            <div class = "inputContainer" class="panel"> <!-- TODO: add a button that allows you to delete items from list, and tags from items-->
+                <div class="panel-block"> <!-- TODO: when the listInput button is clicked, it adds the list item to the list (both displayed list and stored list) then a new box for user input appears -->
+                    <input type = "text" id = "listInput" placeholder = "Enter list item name">
+                    <input type="number" min="0" max="10" value="0" id = "elementRating">
+                </div>
+        
+                <div class="panel-block"> <!-- TODO: when the tagInput button is clicked, it adds the tag to the tag list (both displayed list and stored list) then a new box for user input appears -->
+                    <input type = "text" id = "tagInput" placeholder = "Enter tag name for list item">
+                    <button class = "tagButton" id = "addTagButton">Add Tag</button>
+                    <div id = "editBayTagList">Edit Bay Tag List:</div>
+                </div>
+                <button class = "addButton" id = "addListButton">Add List Item</button>
+        <!-- ____________________ END OF EDITING BAY __________________________________-->
+            </div>
+        
+            <div class = "tagListMaster" id = "tagListMaster">
+                <h2>Tag List:</h2>
+                <!-- tagListMaster is populated here-->
+            </div>
+        
+            <button class = "removeButton" id = "clearTagListMasterButton">Clear Tag List</button><br> <!--Clears all tags from the tag list master-->
+            <label for="categoryDropdown">Category</label>
+            <select name="category" id="category-input" placeholder="category">
+                <option value="Title">Title</option>
+                <option value="ID">ID</option>
+            </select><br/>
+            <label for="platformSelect">Platform</label>
+                <select name="platform" id="platform-input" placeholder="platform">
+                    <option value="OMDB/IMDB">OMDB/IMDB</option>
+                    <option value="Marvel Comics">Marvel Comics</option>
+                    <option value="myanimelist">myanimelist</option>
+                </select>
+            <div class = "listContainer" class= "block">
+                <label for="sortSystem">Choose a sorting system:</label>
+                <select id="sortSystem">
+                    <option value="LMRating">Your rating (Default)</option>
+                    <option value="releaseDate">Release Order</option>
+                  </select>
+                <div class = "listDisplay" id = "itemList"> <!-- container where the list will be displayed -->
+                    <h2>List goes here:</h2><!--list populates here-->
+                </div>
+                <button class = "removeButton" id = "clearListButton">Clear All List Items</button> <!--Clears all items from the list-->
+            </div>
+        
+        
+        <!--________________________ POP UP WINDOW FOR LIST EDITING _______________________________-->
+        
+            <div id = "popUp" style="display: none;"> <!-- popUp is normally hidden until a list item is clicked-->
+                <button class = "removeButton" id = "closePopUpButton"> X </button>
+                <div>
+                    <input type = "text" id = "editListItem" placeholder = "Enter list item name">
+                    <input type="number" min="0" max="10" value="0" id = "editListItemRating">
+                </div>
+        
+                <div> <!-- TODO: when the tagInput button is clicked, it adds the tag to the tag list (both displayed list and stored list) then a new box for user input appears -->
+                    <input type = "text" id = "editListItemTags" placeholder = "Enter tag name for list item">
+                    <button class = "editTagButton" id = "editListAddTagButton">Add Tag</button>
+                </div>
+            </div>
+        
+        <!-- ____________________________________________________________________________________-->
+        
+        
+        
+        
+            <div id = "extraSpace"></div> <!-- extra space to make the page look nicer -->
+        
+        
+
+        </body> 
         <!--results_container will contain list of results pulled from API call that can be added to second ranked list-->
+    <!--this ol contains html elements for ui sliders. API data can be appended to li. added Bulma panel styling. wrapped sliders in section tags, can append to other elements
         <nav class="panel" id="results_container">
-            <!--for MVP only need one list of items with results and rating sliders <ul id="results_list">
-                <h3>Your Results:</h3>    
-                <li>unsorted</li>
-            </ul>-->
+            
             <ol id="itemList">
-                <!--this ol contains html elements for ui sliders. API data can be appended to li-->
-                <h3 class="panel-heading">Your Ranking:</h3> <!--added Tailwind panel styling-->
+                
+                <h3 class="panel-heading">Your Ranking:</h3> 
                 <li class="panel-block" class="ranked_item" id="rank1">
-                    <section id="slider_1"> <!--wrapped sliders in section tags, can append to other elements-->
+                    <section id="slider_1"> 
                         <p>
                             <label for="rating1">Rating:</label>
                             <input type="text" id="rating1" readonly style="border:0; color:#f6931f; font-weight:bold;"> 
@@ -69,12 +145,8 @@
                     </section>
                 </li>
             </ol>
-        </nav>
-    </main>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="./assets/script.js"></script>
-</body>
+        </nav>-->
+    </main> 
     <footer>
     </nav>
       <p>Github Repository Link</p>
@@ -86,7 +158,7 @@
       <ul>
         <li><a href="http://www.omdbapi.com/?">IMDB API</a>
         </li>
-        <li><a href="https://myanimelist.p.rapidapi.com/anime/">Myanimelist API</a>
+        <li><a href="https://api.jikan.moe/v4/anime?">Myanimelist API</a>
         </li>
         <li><a href="https://gateway.marvel.com/v1/public/comics/">Marvel API</a>
         </li>
@@ -104,4 +176,10 @@
       </ul>  
     </nav>
     </footer>
+    <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+    <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+    <!--<script src="./assets/script.js"></script> Deprecated JQuery sliders-->
+    <script src = "./tag button/tagButton.js"></script>
+    <script src = "./tag button/apiFetch.js"></script>
+</body>
 </html>

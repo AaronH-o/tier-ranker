@@ -1,10 +1,40 @@
+* {
+    font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+h1 {
+    background-color: #bfdef8;
+}
+
 .tagBar{
     display: flex;
     width: 100%;
 }
 
+.listContainer{
+    width: 70%;
+}
+
 .tagButton{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10em;
+    height: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.addButton {
+    width: 15em;
+    height: 100%;
+}
+
+.editTagButton{
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -23,6 +53,42 @@
 
 .clickedTagButton{
     background-color: #000000;
+}
+
+#tagListMaster{
+    width: 100%;
+}
+
+#popUp{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: none;
+
+    div{
+        display: none;
+    }
+
+    button{
+        display: none;
+    }
+
+    input{
+        display: none;
+    }
+}
+
+.listItem{
+    border: 1px solid #ccc;
+}
+
+.listContainer{
+    border: 3px solid #ccc;
+}
+
+#extraSpace{ /* This is to make sure the popUp follows the user as they scroll*/
+    width: 100%;
+    height: 600px;
 }
 
 /* TODO:
